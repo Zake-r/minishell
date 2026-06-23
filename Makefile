@@ -1,5 +1,5 @@
 
-SRC = minishell2.c
+SRC = minishell.c
 OBJ = $(SRC:.c=.o)
 LIB_READLINE = -lreadline
 EXEC = minishell
