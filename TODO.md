@@ -3,18 +3,18 @@
 - explication global d un shell : https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 - liste fonction project complet avec commentaire : https://hackmd.io/@laian/B1A0_LSPn
 - article pour pipex : https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
-- 
+- fiche evaluation : https://www.42evalhub.com/common/minishell
 
 
 
 # PARSER
-
+    - 
 
 
 
 # EXECUTION
     - faire en sorte que echo $PATH marche
-    - 
+    - gestion errer flag
 
 
 
@@ -22,3 +22,68 @@
 
 
 # AUTRE
+    - gerer historique
+
+
+liste builtin command :
+.
+:
+[
+alias
+bg
+bind
+break
+builtin
+caller
+cd
+command
+compgen
+complete
+compopt
+continue
+declare
+dirs
+disown
+echo
+enable
+eval
+exec
+exit
+export
+false
+fc
+fg
+getopts
+hash
+help
+history
+jobs
+kill
+let
+local
+logout
+mapfile
+popd
+printf
+pushd
+pwd
+read
+readarray
+readonly
+return
+set
+shift
+shopt
+source
+suspend
+test
+times
+trap
+true
+type
+typeset
+ulimit
+umask
+unalias
+unset
+wait
