@@ -1,0 +1,28 @@
+2026-06-23 16:30:15.123 [info] Extension host with pid 52180 started
+2026-06-23 16:30:15.169 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-06-23 16:30:15.184 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-06-23 16:30:15.210 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-06-23 16:30:15.212 [info] ExtensionService#_doActivateExtension kube.42header, startup: true, activationEvent: '*'
+2026-06-23 16:30:15.225 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-06-23 16:30:15.255 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-06-23 16:30:15.303 [info] Eager extensions activated
+2026-06-23 16:30:15.324 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 16:30:15.326 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 16:30:40.144 [info] Extension host terminating: received terminate message from renderer
+2026-06-23 16:30:40.155 [info] Extension host with pid 52180 exiting with code 0
+2026-06-23 16:30:40.825 [info] Extension host with pid 52395 started
+2026-06-23 16:30:40.825 [info] Skipping acquiring lock for /home/jbusquet/Documents/42cursus/Milestone-3/minishell/~/test-vscode/User/workspaceStorage/c981be78ced907b0b9a6ae48ec2059a0.
+2026-06-23 16:30:40.845 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-06-23 16:30:40.860 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-06-23 16:30:40.887 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-06-23 16:30:40.888 [info] ExtensionService#_doActivateExtension kube.42header, startup: true, activationEvent: '*'
+2026-06-23 16:30:40.904 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-06-23 16:30:40.933 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-06-23 16:30:40.983 [info] Eager extensions activated
+2026-06-23 16:30:41.007 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 16:30:41.008 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 16:52:06.440 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 16:52:06.449 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 16:52:06.698 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 16:52:06.704 [info] ExtensionService#_doActivateExtension vscode.mermaid-markdown-features, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 17:08:37.653 [info] ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:https'

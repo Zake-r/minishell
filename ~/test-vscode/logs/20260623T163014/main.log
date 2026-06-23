@@ -1,0 +1,8 @@
+2026-06-23 16:30:14.164 [info] StorageMainService: creating application shared storage
+2026-06-23 16:30:14.203 [info] [shared storage] Creating shared storage database at '/home/jbusquet/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-06-23 16:30:14.204 [info] [shared storage] Initializing fallback application storage (path: /home/jbusquet/Documents/42cursus/Milestone-3/minishell/~/test-vscode/User/globalStorage/state.vscdb)
+2026-06-23 16:30:14.211 [info] [shared storage] Fallback application storage initialized with 78 items
+2026-06-23 16:30:14.212 [info] update#setState idle
+2026-06-23 16:30:40.156 [info] Extension host with pid 52180 exited with code: 0, signal: unknown.
+2026-06-23 16:30:44.212 [info] update#setState checking for updates
+2026-06-23 16:30:44.590 [info] update#setState available for download
