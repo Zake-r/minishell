@@ -1,0 +1,19 @@
+2026-06-23 17:23:56.783 [info] Started local extension host with pid 32912.
+2026-06-23 17:23:57.226 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-06-23 17:23:57.868 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-06-23 17:24:02.058 [error] [Extension Host] (node:32912) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-06-23 17:24:02.060 [error] An unknown error occurred. Please consult the log for more details.
+2026-06-23 17:24:02.127 [info] [perf] Render performance baseline is 12ms
+2026-06-23 17:24:02.266 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-06-23 17:24:02.583 [info] Auto updating outdated extensions. ms-azuretools.vscode-containers, ms-vscode-remote.remote-containers, vscjava.vscode-java-dependency, vscjava.vscode-java-pack
+2026-06-23 17:24:42.538 [warning] [backup tracker] suspended, ignoring dirty change event file:///home/jbusquet/Documents/42cursus/Milestone-3/minishell/TODO.md 
+2026-06-23 17:24:43.012 [info] Started local extension host with pid 33233.
+2026-06-23 17:24:43.472 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-06-23 17:24:43.665 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-06-23 17:24:44.828 [error] An unknown error occurred. Please consult the log for more details.
+2026-06-23 17:24:45.630 [info] [perf] Render performance baseline is 12ms
+2026-06-23 17:24:48.473 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-06-23 17:24:52.024 [error] [Extension Host] (node:33233) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-06-23 17:24:52.346 [error] [Extension Host] (node:33233) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.

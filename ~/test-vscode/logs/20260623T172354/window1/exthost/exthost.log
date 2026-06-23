@@ -1,0 +1,43 @@
+2026-06-23 17:23:58.101 [info] Extension host with pid 32912 started
+2026-06-23 17:23:58.122 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-06-23 17:23:58.152 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-06-23 17:23:58.166 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 17:23:58.178 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 17:23:58.412 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-06-23 17:23:58.417 [info] ExtensionService#_doActivateExtension kube.42header, startup: true, activationEvent: '*'
+2026-06-23 17:23:58.461 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-06-23 17:23:58.557 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-06-23 17:23:58.574 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 17:23:58.586 [info] ExtensionService#_doActivateExtension vscode.mermaid-markdown-features, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 17:23:58.650 [info] Eager extensions activated
+2026-06-23 17:23:58.664 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:23:58.668 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:23:58.683 [info] ExtensionService#_doActivateExtension ms-vscode-remote.remote-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:23:58.786 [info] ExtensionService#_doActivateExtension vscodevim.vim, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:23:59.874 [error] Error: ENOENT: no such file or directory, open '/home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/globalStorage/vscodevim.vim/.registers'
+2026-06-23 17:24:42.550 [info] Extension host terminating: received terminate message from renderer
+2026-06-23 17:24:42.558 [error] Error: ENOENT: no such file or directory, open '/home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/globalStorage/vscodevim.vim/.registers'
+2026-06-23 17:24:42.558 [info] Extension host with pid 32912 exiting with code 0
+2026-06-23 17:24:43.329 [info] Extension host with pid 33233 started
+2026-06-23 17:24:43.329 [info] Skipping acquiring lock for /home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/workspaceStorage/86b10d2d6fe17649770a9eff6c65cfb4.
+2026-06-23 17:24:43.381 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-06-23 17:24:43.397 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-06-23 17:24:43.431 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-06-23 17:24:43.432 [info] ExtensionService#_doActivateExtension kube.42header, startup: true, activationEvent: '*'
+2026-06-23 17:24:43.469 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-06-23 17:24:43.497 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-06-23 17:24:43.548 [info] Eager extensions activated
+2026-06-23 17:24:43.580 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:24:43.581 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:24:43.591 [info] ExtensionService#_doActivateExtension ms-vscode-remote.remote-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:24:43.706 [info] ExtensionService#_doActivateExtension vscodevim.vim, startup: false, activationEvent: 'onStartupFinished'
+2026-06-23 17:24:44.827 [error] Error: ENOENT: no such file or directory, open '/home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/globalStorage/vscodevim.vim/.registers'
+2026-06-23 17:24:51.868 [info] ExtensionService#_doActivateExtension ms-vscode.cpp-devtools, startup: false, activationEvent: 'onLanguage:c'
+2026-06-23 17:24:51.881 [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onLanguage:c'
+2026-06-23 17:24:53.659 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 17:24:53.673 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-06-23 17:24:54.042 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 17:24:54.057 [info] ExtensionService#_doActivateExtension vscode.mermaid-markdown-features, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-06-23 17:25:14.643 [info] Extension host terminating: received terminate message from renderer
+2026-06-23 17:25:14.657 [error] Error: ENOENT: no such file or directory, open '/home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/globalStorage/vscodevim.vim/.registers'
+2026-06-23 17:25:14.664 [info] Extension host with pid 33233 exiting with code 0

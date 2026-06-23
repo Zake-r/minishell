@@ -4,7 +4,8 @@
 - liste fonction project complet avec commentaire : https://hackmd.io/@laian/B1A0_LSPn
 - article pour pipex : https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
 - fiche evaluation : https://www.42evalhub.com/common/minishell
-
+- project complet super explication : https://github.com/zelhajou/ft_unix_minishell
+- project explication workflow: https://github.com/multitudes/42-minishell
 
 
 # PARSER
@@ -15,15 +16,14 @@
 # EXECUTION
     - faire en sorte que echo $PATH marche
     - gestion errer flag
-
+    - gestion erreur apres execve
 
 
 
 
 
 # AUTRE
-    - gerer historique
-
+    - gestion signal
 
 liste builtin command :
 .

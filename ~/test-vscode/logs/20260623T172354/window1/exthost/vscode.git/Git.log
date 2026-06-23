@@ -1,0 +1,65 @@
+2026-06-23 17:23:58.875 [info] [main] Log level: Info
+2026-06-23 17:23:58.875 [info] [main] Validating found git in: "git"
+2026-06-23 17:23:58.875 [info] [main] Using git "2.54.0" from "git"
+2026-06-23 17:23:58.875 [info] [Model][doInitialScan] Initial repository scan started
+2026-06-23 17:23:58.875 [warning] [Model][getRepositoryExact] Failed to get repository realpath for: "/home/jbusquet/Documents/42cursus/Milestone-3/minishell". Error:Error: ENOENT: no such file or directory, realpath '/home/jbusquet/Documents/42cursus/Milestone-3/minishell'
+2026-06-23 17:23:58.875 [info] [Model][doInitialScan] Initial repository scan completed - repositories (0), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-06-23 17:24:43.554 [info] [main] Log level: Info
+2026-06-23 17:24:43.554 [info] [main] Validating found git in: "git"
+2026-06-23 17:24:43.554 [info] [main] Using git "2.54.0" from "git"
+2026-06-23 17:24:43.554 [info] [Model][doInitialScan] Initial repository scan started
+2026-06-23 17:24:43.555 [info] > git rev-parse --show-toplevel [2ms]
+2026-06-23 17:24:43.560 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [2ms]
+2026-06-23 17:24:43.788 [info] [Model][openRepository] Opened repository (path): /home/jbossuyt/Documents/42/minishell_git
+2026-06-23 17:24:43.788 [info] [Model][openRepository] Opened repository (real path): /home/jbossuyt/Documents/42/minishell_git
+2026-06-23 17:24:43.788 [info] [Model][openRepository] Opened repository (kind): repository
+2026-06-23 17:24:43.826 [info] > git config --get --local core.virtualfilesystem [34ms]
+2026-06-23 17:24:43.826 [warning] [Git][config] git config failed: Failed to execute git
+2026-06-23 17:24:43.828 [info] > git rev-parse --show-toplevel [4ms]
+2026-06-23 17:24:43.829 [info] > git config --get commit.template [8ms]
+2026-06-23 17:24:43.837 [info] > git rev-parse --show-toplevel [5ms]
+2026-06-23 17:24:43.839 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-06-23 17:24:43.840 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [4ms]
+2026-06-23 17:24:43.865 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-06-23 17:24:43.951 [info] > git status -z -uall [92ms]
+2026-06-23 17:24:43.992 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [29ms]
+2026-06-23 17:24:43.998 [info] > git config --get commit.template [11ms]
+2026-06-23 17:24:44.000 [info] > git config --get --local branch.main.vscode-merge-base [3ms]
+2026-06-23 17:24:44.007 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [1ms]
+2026-06-23 17:24:44.007 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/origin/main refs/remotes/origin/main [3ms]
+2026-06-23 17:24:44.013 [info] > git merge-base refs/heads/main refs/remotes/origin/main [2ms]
+2026-06-23 17:24:44.023 [info] > git diff --raw --numstat --diff-filter=ADMR -z --find-renames=50% 9f9c18cc1265ef09b7e3e60569952c09a7353e0f...refs/remotes/origin/main -- [7ms]
+2026-06-23 17:24:44.024 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-06-23 17:24:44.055 [info] > git status -z -uall [36ms]
+2026-06-23 17:24:44.298 [info] > git check-ignore -v -z --stdin [1ms]
+2026-06-23 17:24:46.692 [info] > git config --get commit.template [2ms]
+2026-06-23 17:24:46.692 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [1ms]
+2026-06-23 17:24:46.697 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-06-23 17:24:46.732 [info] > git status -z -uall [37ms]
+2026-06-23 17:24:47.423 [info] > git check-ignore -v -z --stdin [1ms]
+2026-06-23 17:24:51.748 [info] > git config --get commit.template [3ms]
+2026-06-23 17:24:51.748 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [1ms]
+2026-06-23 17:24:51.754 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-06-23 17:24:51.842 [info] > git status -z -uall [91ms]
+2026-06-23 17:24:52.263 [info] > git check-ignore -v -z --stdin [1ms]
+2026-06-23 17:24:52.280 [info] > git ls-files --stage -- minishell.c [10ms]
+2026-06-23 17:24:52.283 [info] > git show --textconv :minishell.c [14ms]
+2026-06-23 17:24:52.297 [info] > git cat-file -s bda987dcfd3dfccb3e651182bfdbd882dab8b785 [15ms]
+2026-06-23 17:24:53.761 [info] > git check-ignore -v -z --stdin [8ms]
+2026-06-23 17:24:53.767 [info] > git ls-files --stage -- TODO.md [1ms]
+2026-06-23 17:24:53.791 [info] > git show --textconv :TODO.md [27ms]
+2026-06-23 17:24:53.792 [info] > git cat-file -s 1851fbfac9b7b7f750559d39f10e02af1d7f4666 [23ms]
+2026-06-23 17:24:55.330 [info] > git blame --root --incremental 9f9c18cc1265ef09b7e3e60569952c09a7353e0f -- TODO.md [70ms]
+2026-06-23 17:24:56.854 [info] > git config --get commit.template [4ms]
+2026-06-23 17:24:56.854 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [1ms]
+2026-06-23 17:24:56.862 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-06-23 17:24:56.894 [info] > git status -z -uall [36ms]
+2026-06-23 17:24:57.205 [info] > git check-ignore -v -z --stdin [1ms]
+2026-06-23 17:25:10.522 [info] > git config --get commit.template [4ms]
+2026-06-23 17:25:10.525 [info] > git ls-files --stage -- TODO.md [4ms]
+2026-06-23 17:25:10.528 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [3ms]
+2026-06-23 17:25:10.533 [info] > git cat-file -s 1851fbfac9b7b7f750559d39f10e02af1d7f4666 [5ms]
+2026-06-23 17:25:10.537 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-06-23 17:25:10.537 [info] > git show --textconv :TODO.md [1ms]
+2026-06-23 17:25:10.567 [info] > git status -z -uall [35ms]
+2026-06-23 17:25:10.879 [info] > git check-ignore -v -z --stdin [1ms]

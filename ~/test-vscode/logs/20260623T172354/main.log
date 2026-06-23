@@ -1,0 +1,10 @@
+2026-06-23 17:23:54.886 [info] StorageMainService: creating application shared storage
+2026-06-23 17:23:54.912 [error] Invalid path provided: /home/jbusquet/Documents/42cursus/Milestone-3/minishell, ENOENT: no such file or directory, stat '/home/jbusquet/Documents/42cursus/Milestone-3/minishell'
+2026-06-23 17:23:55.988 [info] [shared storage] Creating shared storage database at '/home/jbossuyt/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-06-23 17:23:55.988 [info] [shared storage] Initializing fallback application storage (path: /home/jbossuyt/Documents/42/minishell_git/~/test-vscode/User/globalStorage/state.vscdb)
+2026-06-23 17:23:56.016 [info] [shared storage] Fallback application storage initialized with 83 items
+2026-06-23 17:23:56.017 [info] update#setState idle
+2026-06-23 17:24:26.019 [info] update#setState checking for updates
+2026-06-23 17:24:26.038 [info] update#setState available for download
+2026-06-23 17:24:42.559 [info] Extension host with pid 32912 exited with code: 0, signal: unknown.
+2026-06-23 17:25:14.664 [info] Extension host with pid 33233 exited with code: 0, signal: unknown.

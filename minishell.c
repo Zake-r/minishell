@@ -236,6 +236,8 @@ void free_tokens(t_token *tokens, int nb_cmd)
 
 /* ── main ── */
 
+
+
 int main(int argc, char **argv, char **env)
 {
     (void)argc;
@@ -246,10 +248,11 @@ int main(int argc, char **argv, char **env)
         char    *line = readline("> ");
         if (!line)
             return (0);
-
+        add_history(line);
+        rl_on_new_line();
         int     nb_cmd = count_pipe(line) + 1;
         t_token *tokens = parse_line(line, nb_cmd);
-
+        int i = 0;
         execute(tokens, nb_cmd, env);
 
         free_tokens(tokens, nb_cmd);

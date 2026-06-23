@@ -1,0 +1,7 @@
+brouillon_shell.c
+exec_test.c
+output2.txt
+output.txt
+pipe_test2.c
+pipe_test.c
+strtok_test.c

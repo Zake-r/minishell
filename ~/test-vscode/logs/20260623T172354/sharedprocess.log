@@ -1,0 +1,40 @@
+2026-06-23 17:23:57.871 [info] Marked extension as removed ms-azuretools.vscode-containers-2.4.1
+2026-06-23 17:23:57.871 [info] Marked extension as removed ms-vscode-remote.remote-containers-0.454.0
+2026-06-23 17:23:57.871 [info] Marked extension as removed ms-vscode.cmake-tools-1.23.51
+2026-06-23 17:23:57.871 [info] Marked extension as removed ms-vscode.cpp-devtools-0.4.6
+2026-06-23 17:23:57.871 [info] Marked extension as removed ms-vscode.cpptools-1.31.4-linux-x64
+2026-06-23 17:23:57.871 [info] Marked extension as removed vscjava.vscode-maven-0.45.2
+2026-06-23 17:23:58.105 [info] Deleted marked for removal extension from disk ms-vscode.cmake-tools /home/jbossuyt/.vscode/extensions/ms-vscode.cmake-tools-1.23.51
+2026-06-23 17:23:58.105 [info] Deleted marked for removal extension from disk ms-vscode.cpp-devtools /home/jbossuyt/.vscode/extensions/ms-vscode.cpp-devtools-0.4.6
+2026-06-23 17:23:58.105 [info] Deleted marked for removal extension from disk ms-vscode.cpptools /home/jbossuyt/.vscode/extensions/ms-vscode.cpptools-1.31.4-linux-x64
+2026-06-23 17:23:58.106 [info] Deleted marked for removal extension from disk vscjava.vscode-maven /home/jbossuyt/.vscode/extensions/vscjava.vscode-maven-0.45.2
+2026-06-23 17:23:58.106 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-containers /home/jbossuyt/.vscode/extensions/ms-azuretools.vscode-containers-2.4.1
+2026-06-23 17:23:58.106 [info] Deleted marked for removal extension from disk ms-vscode-remote.remote-containers /home/jbossuyt/.vscode/extensions/ms-vscode-remote.remote-containers-0.454.0
+2026-06-23 17:24:03.586 [info] Getting Manifest... ms-azuretools.vscode-containers
+2026-06-23 17:24:03.587 [info] Getting Manifest... ms-vscode-remote.remote-containers
+2026-06-23 17:24:03.587 [info] Getting Manifest... vscjava.vscode-java-dependency
+2026-06-23 17:24:03.588 [info] Getting Manifest... vscjava.vscode-java-pack
+2026-06-23 17:24:03.636 [info] Installing extension: ms-azuretools.vscode-containers {"productVersion":{"version":"1.125.0","date":"2026-06-15T22:24:03Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json","path":"/home/jbossuyt/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":false}
+2026-06-23 17:24:03.637 [info] Installing extension: vscjava.vscode-java-dependency {"productVersion":{"version":"1.125.0","date":"2026-06-15T22:24:03Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json","path":"/home/jbossuyt/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":false}
+2026-06-23 17:24:03.639 [info] Installing extension: vscjava.vscode-java-pack {"productVersion":{"version":"1.125.0","date":"2026-06-15T22:24:03Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json","path":"/home/jbossuyt/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":false}
+2026-06-23 17:24:03.640 [info] Installing extension: ms-vscode-remote.remote-containers {"productVersion":{"version":"1.125.0","date":"2026-06-15T22:24:03Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json","path":"/home/jbossuyt/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":false}
+2026-06-23 17:24:04.823 [info] Extension signature verification result for ms-azuretools.vscode-containers: Success. Internal Code: 0. Executed: true. Duration: 554ms.
+2026-06-23 17:24:04.827 [info] Extension signature verification result for vscjava.vscode-java-dependency: Success. Internal Code: 0. Executed: true. Duration: 572ms.
+2026-06-23 17:24:04.827 [info] Extension signature verification result for ms-vscode-remote.remote-containers: Success. Internal Code: 0. Executed: true. Duration: 554ms.
+2026-06-23 17:24:04.834 [info] Extension signature verification result for vscjava.vscode-java-pack: Success. Internal Code: 0. Executed: true. Duration: 563ms.
+2026-06-23 17:24:04.857 [info] Extracted extension to file:///home/jbossuyt/.vscode/extensions/vscjava.vscode-java-dependency-0.27.5: vscjava.vscode-java-dependency
+2026-06-23 17:24:04.866 [info] Renamed to /home/jbossuyt/.vscode/extensions/vscjava.vscode-java-dependency-0.27.5
+2026-06-23 17:24:04.882 [info] Extracted extension to file:///home/jbossuyt/.vscode/extensions/ms-azuretools.vscode-containers-2.4.5: ms-azuretools.vscode-containers
+2026-06-23 17:24:04.890 [info] Marked extension as removed vscjava.vscode-java-dependency-0.27.2
+2026-06-23 17:24:04.894 [info] Extension installed successfully: vscjava.vscode-java-dependency vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json
+2026-06-23 17:24:04.954 [info] Extracted extension to file:///home/jbossuyt/.vscode/extensions/vscjava.vscode-java-pack-0.31.1: vscjava.vscode-java-pack
+2026-06-23 17:24:04.956 [info] Renamed to /home/jbossuyt/.vscode/extensions/ms-azuretools.vscode-containers-2.4.5
+2026-06-23 17:24:04.974 [info] Extracted extension to file:///home/jbossuyt/.vscode/extensions/ms-vscode-remote.remote-containers-0.459.1: ms-vscode-remote.remote-containers
+2026-06-23 17:24:05.041 [info] Renamed to /home/jbossuyt/.vscode/extensions/vscjava.vscode-java-pack-0.31.1
+2026-06-23 17:24:05.043 [info] Renamed to /home/jbossuyt/.vscode/extensions/ms-vscode-remote.remote-containers-0.459.1
+2026-06-23 17:24:05.045 [info] Marked extension as removed ms-azuretools.vscode-containers-2.4.3
+2026-06-23 17:24:05.078 [info] Extension installed successfully: ms-azuretools.vscode-containers vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json
+2026-06-23 17:24:05.146 [info] Marked extension as removed vscjava.vscode-java-pack-0.30.5
+2026-06-23 17:24:05.183 [info] Extension installed successfully: vscjava.vscode-java-pack vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json
+2026-06-23 17:24:05.191 [info] Marked extension as removed ms-vscode-remote.remote-containers-0.457.0
+2026-06-23 17:24:05.192 [info] Extension installed successfully: ms-vscode-remote.remote-containers vscode-userdata:/home/jbossuyt/.vscode/extensions/extensions.json

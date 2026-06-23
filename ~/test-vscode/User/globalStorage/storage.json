@@ -1,26 +1,29 @@
 {
     "telemetry.sqmId": "",
     "telemetry.machineId": "3de87d9937aaf5f6bcc03da4ae1deaa9217b15faac87cecc68a15336e389c1af",
-    "telemetry.devDeviceId": "3a2521a0-d60c-4ef4-a94b-d0cf901d7516",
+    "telemetry.devDeviceId": "11095249-7d71-45a2-96f4-28e74be20b2f",
     "backupWorkspaces": {
         "workspaces": [],
         "folders": [
             {
-                "folderUri": "file:///home/jbusquet/Documents/42cursus/Milestone-3/minishell"
+                "folderUri": "file:///home/jbossuyt/Documents/42/minishell_git"
             }
         ],
         "emptyWindows": [
             {
-                "backupFolder": "1782224941155"
+                "backupFolder": "1782228235718"
             }
         ]
     },
     "windowControlHeight": 35,
     "profileAssociations": {
         "workspaces": {
-            "file:///home/jbusquet/Documents/42cursus/Milestone-3/minishell": "__default__profile__"
+            "file:///home/jbusquet/Documents/42cursus/Milestone-3/minishell": "__default__profile__",
+            "file:///home/jbossuyt/Documents/42/minishell_git": "__default__profile__"
         },
-        "emptyWindows": {}
+        "emptyWindows": {
+            "1782228235718": "__default__profile__"
+        }
     },
     "theme": "vs-dark",
     "themeBackground": "#121314",
@@ -54,14 +57,14 @@
     },
     "windowsState": {
         "lastActiveWindow": {
-            "folder": "file:///home/jbusquet/Documents/42cursus/Milestone-3/minishell",
-            "backupPath": "/home/jbusquet/Documents/42cursus/Milestone-3/minishell/~/test-vscode/Backups/098c2c44acfd6127d2098da3d03192e3",
+            "folder": "file:///home/jbossuyt/Documents/42/minishell_git",
+            "backupPath": "/home/jbossuyt/Documents/42/minishell_git/~/test-vscode/Backups/29e23ccc90b2d1d03c6ce9dfcb2a7250",
             "uiState": {
                 "mode": 0,
-                "x": 1,
-                "y": 0,
-                "width": 1230,
-                "height": 841
+                "x": -14,
+                "y": -10,
+                "width": 1260,
+                "height": 882
             }
         },
         "openedWindows": []
@@ -72,6 +75,10 @@
             "auxiliaryBarWidth": 300,
             "workspaces": {
                 "c981be78ced907b0b9a6ae48ec2059a0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "86b10d2d6fe17649770a9eff6c65cfb4": {
                     "sideBarVisible": true,
                     "auxiliaryBarVisible": true
                 }
