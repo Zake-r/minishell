@@ -17,10 +17,11 @@
 
 # EXECUTION
     - Comprendre comment je suis sense interpreter les pipes et redirection venant du parser (struct AST)
+    - Ajout libft
     - Faire liste chainer du $PATH
+    - gestion erreur apres execve
     - faire en sorte que echo $PATH marche
     - gestion errer flag
-    - gestion erreur apres execve
 
 
 # AUTRE
