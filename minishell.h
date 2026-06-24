@@ -22,6 +22,7 @@ typedef struct s_token
 typedef enum e_type
 {
     WORD,
+	CMD,
     PIPE,
     REDIR_IN,
     REDIR_OUT,
@@ -29,18 +30,11 @@ typedef enum e_type
     HEREDOC
 }   t_type;
 
-typedef enum e_ast_type
-{
-	CMD,
-	PIPE,
-    REDIR_IN,
-    REDIR_OUT,
-    HEREDOC
-} t_ast_type;
+
 
 typedef struct s_ast
 {
-	t_ast_type type;
+	t_type type;
 	char **args;
 	struct s_ast *left;
 	struct s_ast *right;
@@ -75,5 +69,10 @@ void	execute(t_token *tokens, int nb_cmd, char **env);
 /* ── libération ── */
 
 void	free_tokens(t_token *tokens, int nb_cmd);
+
+
+
+t_ast   *create_ast(int nb);
+
 
 #endif

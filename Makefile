@@ -1,5 +1,5 @@
 
-SRC = minishell.c
+SRC = minishell.c #liste_ast_struct.c execution_functions.c
 OBJ = $(SRC:.c=.o)
 LIB_READLINE = -lreadline
 EXEC = minishell
