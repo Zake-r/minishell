@@ -71,6 +71,7 @@ void exec_pipe(t_ast *ast, char **env)
         dup2(fd[1],STDOUT_FILENO);
         close(fd[1]);
         exec_ast(ast->left,env);
+        free_ast(ast);
         exit(0);
     }
 
@@ -87,6 +88,7 @@ void exec_pipe(t_ast *ast, char **env)
         dup2(fd[0], STDIN_FILENO);
         close(fd[0]);
         exec_ast(ast->right,env);
+        free_ast(ast);
         exit(0);
     }
 
@@ -121,6 +123,7 @@ void exec_redirout(t_ast *ast, char **env)
         dup2(fd,STDOUT_FILENO);
         close(fd);
         exec_ast(ast->left, env);
+        free_ast(ast);
         exit(1);
     }
     waitpid(pid, NULL, 0);
@@ -144,7 +147,7 @@ int main(int argc, char **argv, char **env)
 {
     t_ast *ast;
     
-    ast = create_ast(2);   
+    ast = create_ast(5);   
     exec_ast(ast, env);
 
    
