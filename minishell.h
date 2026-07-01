@@ -2,6 +2,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -73,6 +74,7 @@ void	free_tokens(t_token *tokens, int nb_cmd);
 
 
 t_ast   *create_ast(int nb);
-
-
+void exec_cmd(t_ast *ast, char **env);
+void exec_pipe(t_ast *ast, char **env);
+void exec_ast(t_ast *ast, char **env);
 #endif

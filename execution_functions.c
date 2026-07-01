@@ -37,40 +37,115 @@ void exec_cmd(t_ast *ast, char **env)
     {
         perror("erreur fork");
         free_ast(ast);
-        return (1);
+        return ;
     }
     if (pid == 0)
     {
         execve(ast->args[0], ast->args, env);
         perror("erreur execve");
+        free_ast(ast);
         exit(1);
     }
     waitpid(pid,NULL,0);
 
 }
 
+void exec_pipe(t_ast *ast, char **env)
+{
+    pid_t pid_l;
+    pid_t pid_r;
+    int fd[2];
 
-void execute_rec(t_ast *ast,char **env)
+    pipe(fd);
+
+    pid_l = fork();
+    if (pid_l == -1)
+    {
+        perror("erreur fork");
+        free_ast(ast);
+        return ; 
+    }
+    if (pid_l == 0)
+    {
+        close(fd[0]);
+        dup2(fd[1],STDOUT_FILENO);
+        close(fd[1]);
+        exec_ast(ast->left,env);
+        exit(0);
+    }
+
+    pid_r = fork();
+    if (pid_r == -1)
+    {
+        perror("erreur fork");
+        free_ast(ast);
+        return ;
+    }
+    if (pid_r == 0)
+    {
+        close(fd[1]);
+        dup2(fd[0], STDIN_FILENO);
+        close(fd[0]);
+        exec_ast(ast->right,env);
+        exit(0);
+    }
+
+    close(fd[0]);
+    close(fd[1]);
+    waitpid(pid_l,NULL,0);
+    waitpid(pid_r,NULL,0);
+
+}
+
+void exec_redirout(t_ast *ast, char **env)
+{
+    int fd;
+    pid_t pid;
+
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("erreur fork");
+        free_ast(ast);
+        return ;
+    }
+    if (pid == 0)
+    {
+        fd = open(ast->args[0], O_WRONLY);
+        if (fd == -1)
+        {
+            perror("erreur fd redirection\n");
+            free_ast(ast);
+            exit(1);
+        }
+        dup2(fd,STDOUT_FILENO);
+        close(fd);
+        exec_ast(ast->left, env);
+        exit(1);
+    }
+    waitpid(pid, NULL, 0);
+}
+
+
+void exec_ast(t_ast *ast, char **env)
 {
     if (!ast)
         return ;
-    if (ast->type == CMD)
+    else if (ast->type == CMD)
         exec_cmd(ast, env);
-    if (ast->type == PIPE) 
-        execute_rec(ast->right, env); 
-        execute_rec(ast->left, env);
-    
-
-
-
+    else if (ast->type == PIPE) 
+        exec_pipe(ast, env); 
+    else if (ast->type == REDIR_OUT) 
+        exec_redirout(ast, env);
+              
 }
 
 int main(int argc, char **argv, char **env)
 {
     t_ast *ast;
     
-    ast = create_ast(0);   
-    execute_rec(ast, env);
+    ast = create_ast(2);   
+    exec_ast(ast, env);
 
    
     free_ast(ast);
