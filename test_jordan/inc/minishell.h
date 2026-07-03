@@ -36,21 +36,6 @@ typedef enum e_type
 	HEREDOC
 }	t_type;
 
-typedef struct s_ast
-{
-	t_type type;
-	char **args;
-	struct s_ast *left;
-	struct s_ast *right;
-} t_ast;
-
-
-
-
-void exec_cmd(t_ast *ast, char **env);
-void exec_pipe(t_ast *ast, char **env);
-void exec_ast(t_ast *ast, char **env);
-
 typedef struct s_token
 {
 	t_type			type;
@@ -58,7 +43,16 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-t_token		*parsing(void);
+typedef struct s_ast
+{
+	t_type			type;
+	char			**args;
+	struct s_ast	*left;
+	struct s_ast	*right;
+}	t_ast;
+
+// parsing:
+t_token	*parsing(void);
 
 t_token	*lexer(char *line);
 t_token	*new_token(t_type type, char *value);
@@ -66,9 +60,6 @@ void	add_token(t_token **lst, t_token *new);
 char	*extract_word(char **line);
 
 int		syntax_check(t_token *tokens);
-
-void	free_all(t_token *tokens, char *line);
-
 
 /* ── helpers ── */
 
@@ -93,11 +84,15 @@ t_token	*parse_line(char *line, int nb_cmd);
 /* ── exécution ── */
 
 void	execute(t_token *tokens, int nb_cmd, char **env);
-void free_ast(t_ast *ast);
+void	free_ast(t_ast *ast);
 
 /* ── libération ── */
 
-void	print_ast(t_ast *ast);
-void	free_tokens(t_token *tokens);
+void	exec_cmd(t_ast *ast, char **env);
+void	exec_pipe(t_ast *ast, char **env);
+void	exec_ast(t_ast *ast, char **env);
+
+// free:
+void	free_all(t_token *tokens, char *line);
 
 #endif

@@ -14,7 +14,7 @@ NAME		= minishell
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 READLINE	= -lreadline
 IFLAGS		= -I$(INC_DIR) -I. -I$(LIBFT_DIR)
 

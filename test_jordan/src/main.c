@@ -103,9 +103,6 @@ t_ast	*create_ast(t_token **tokens)
 
 }
 
-
-
-
 int	main(int argc, char **argv, char **env)
 {
 	t_token	*tokens;
@@ -116,9 +113,8 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		tokens = parsing();
-
-		// if (parsing())
-		// 	return (1);
+		if (!tokens)
+			return (1);
 		ast = create_ast(&tokens);   
 		//print_ast(ast);
 		exec_ast(ast, env);
