@@ -39,10 +39,8 @@
 
 
 # EXECUTION
-    - Comprendre comment je suis sense interpreter les pipes et redirection venant du parser (struct AST)
-    - Ajout libft
-    - Faire liste chainer du $PATH
-    - gestion erreur apres execve
+    - Fichier recherche dans $PATH
+    - Faire pour redirin et heredoc
     - faire en sorte que echo $PATH marche
     - gestion errer flag
 
