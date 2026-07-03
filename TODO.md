@@ -7,11 +7,34 @@
 - project complet super explication : https://github.com/zelhajou/ft_unix_minishell
 - project explication workflow: https://github.com/multitudes/42-minishell
 
-# NOTES POUR NOUS 2 
+# NOTES POUR NOUS 2
 - La recherche dans le PATH c est dans la partie EXECUTION pas dans le parser ! (C est a jbossuyt de faire)
 
 # PARSER
-    - 
+    - gerer les arguments du main et rajouter dans la fonction parsing()
+	// main
+	// │
+	// ├── readline() ok
+	// │    retour la ligne
+	// │
+	// ├── lexer() ok
+	// │    trasforme la ligne en tokens
+	// │
+	// ├── syntax_check()
+	// │    verifie les erreurs
+	// │
+	// ├── parser()
+	// │    construit les commandes
+	// │
+	// ├── expand()
+	// │    remplace $HOME etc.
+	// │
+	// ├── execute()
+	// │    lance les commandes
+	// │
+	// └── free()
+	//      libere le tout
+
 
 
 
@@ -28,30 +51,30 @@
     - gestion signal
 
 
-Shema explicatif tokenization: 
+Shema explicatif tokenization:
 
 > ls -l | wc -l > output.txt | ls > output2.txt
-Token:  ls                    | Type:  WORD                
+Token:  ls                    | Type:  WORD
 --------------------------------------------------
-Token:  -l                    | Type:  WORD                
+Token:  -l                    | Type:  WORD
 --------------------------------------------------
-Token:  |                     | Type:  PIPE                
+Token:  |                     | Type:  PIPE
 --------------------------------------------------
-Token:  wc                    | Type:  WORD                
+Token:  wc                    | Type:  WORD
 --------------------------------------------------
-Token:  -l                    | Type:  WORD                
+Token:  -l                    | Type:  WORD
 --------------------------------------------------
-Token:  >                     | Type:  REDIRECT_OUT        
+Token:  >                     | Type:  REDIRECT_OUT
 --------------------------------------------------
-Token:  output.txt            | Type:  WORD                
+Token:  output.txt            | Type:  WORD
 --------------------------------------------------
-Token:  |                     | Type:  PIPE                
+Token:  |                     | Type:  PIPE
 --------------------------------------------------
-Token:  ls                    | Type:  WORD                
+Token:  ls                    | Type:  WORD
 --------------------------------------------------
-Token:  >                     | Type:  REDIRECT_OUT        
+Token:  >                     | Type:  REDIRECT_OUT
 --------------------------------------------------
-Token:  output2.txt           | Type:  WORD                
+Token:  output2.txt           | Type:  WORD
 --------------------------------------------------
 
 liste builtin command :
