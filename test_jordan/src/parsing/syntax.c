@@ -47,9 +47,9 @@ static int	check_tokens(t_token *token)
 		if (token->type == PIPE && token->next->type == PIPE)
 			return (printf("syntax error\n"), 1);
 		if (is_redirection(token->type) && is_redirection(token->next->type))
-			return (printf("syntax error\n", token->next->value), 1);
+			return (printf("syntax error\n"), 1);
 		if (token->type == PIPE && is_redirection(token->next->type))
-			return (printf("syntax error\n", token->next->value), 1);
+			return (printf("syntax error\n"), 1);
 		if (is_redirection(token->type) && token->next->type == PIPE)
 			return (printf("syntax error\n"), 1);
 		token = token->next;

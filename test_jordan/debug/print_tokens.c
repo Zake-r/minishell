@@ -35,3 +35,14 @@ void	print_tokens(t_token *tokens)
 		tokens = tokens->next;
 	}
 }
+
+void	print_ast(t_ast *ast)
+{
+	while (ast)
+	{
+		printf("type -> %d value=%s\n",
+			ast->type,
+			ast->args[0]);
+		ast = ast->left;
+	}
+}
