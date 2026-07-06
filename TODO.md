@@ -40,6 +40,7 @@
 
 # EXECUTION
     - Fichier recherche dans $PATH
+	- Verifier si permission bonne pour fichier commande
     - Faire pour redirin et heredoc
     - faire en sorte que echo $PATH marche
     - gestion errer flag

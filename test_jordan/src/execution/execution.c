@@ -31,6 +31,7 @@ void free_ast(t_ast *ast)
 void exec_cmd(t_ast *ast, char **env)
 {
     pid_t pid;
+	char *cmd;
 
     pid = fork();
     if (pid == -1)
@@ -41,7 +42,14 @@ void exec_cmd(t_ast *ast, char **env)
     }
     if (pid == 0)
     {
-        execve(ast->args[0], ast->args, env);
+		cmd = verif_command(ast->args[0], env);
+		if (!cmd)
+		{
+			write(1, "command not found\n", 18);
+        	free_ast(ast);
+			exit(1);
+		}
+        execve(cmd, ast->args, env);
         perror("erreur execve");
         free_ast(ast);
         exit(1);

@@ -95,4 +95,6 @@ void	exec_ast(t_ast *ast, char **env);
 // free:
 void	free_all(t_token *tokens, char *line);
 
+char *verif_command(char *cmd, char **env);
+
 #endif
