@@ -55,6 +55,8 @@ char	*extract_word(char **line)
 		(*line)++;
 	len = *line - start;
 	word = malloc(len + 1);
+	if (!word)
+		return (NULL);
 	ft_strncpy(word, start, len);
 	word[len] = '\0';
 	return (word);

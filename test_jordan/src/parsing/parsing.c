@@ -18,15 +18,13 @@ t_token	*parsing(void)
 	t_token	*tokens;
 
 	line = readline("> ");
-	// if (!line)
-	// 	return (1);
+	if (!line)
+		return (NULL);
 	tokens = lexer(line);
-	// if (!tokens)
-	// 	return (1);
-	syntax_check(tokens);
-	// if (syntax_check(tokens))
-	// 	return (free_all(tokens, line), 1);
-	//print_tokens(tokens);
-	// free_all(tokens, line);
+	if (!tokens)
+		return (NULL);
+	if (syntax_check(tokens))
+		return (free_all(tokens, line), NULL);
+	free(line);
 	return (tokens);
 }

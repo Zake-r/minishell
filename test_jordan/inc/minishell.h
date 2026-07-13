@@ -61,6 +61,8 @@ char	*extract_word(char **line);
 
 int		syntax_check(t_token *tokens);
 
+t_ast	*create_ast(t_token **tokens);
+
 /* ── helpers ── */
 
 int		count_pipe(char *s);
@@ -94,6 +96,7 @@ void	exec_ast(t_ast *ast, char **env);
 
 // free:
 void	free_all(t_token *tokens, char *line);
+void	free_tokens(t_token *tokens);
 
 char *verif_command(char *cmd, char **env);
 
