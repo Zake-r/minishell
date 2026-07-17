@@ -70,14 +70,8 @@ int		count_word_to_pipe(char *s);
 
 /* ── builtins ── */
 
-int		is_builtin(char *cmd);
-void	builtin_cd(t_token *token);
-void	builtin_pwd(void);
-void	builtin_echo(t_token *token);
-void	builtin_export(t_token *token, char **env);
-void	builtin_unset(t_token *token);
-void	builtin_env(char **env);
-void	exec_builtin(t_token *token, char **env);
+int     is_builtin(char *cmd);
+void    exec_builtin(t_ast *ast, char **env);
 
 /* ── parsing ── */
 

@@ -30,7 +30,6 @@ int	main(int argc, char **argv, char **env)
 		// print_ast(ast, 0, 1);
 		exec_ast(ast, env);
 		free_ast(ast);
-		return (0);
 	}
 	return (0);
 }

@@ -42,6 +42,11 @@ void exec_cmd(t_ast *ast, char **env)
     }
     if (pid == 0)
     {
+		if (is_builtin(ast->args[0]))
+		{
+			exec_builtin(ast, env);
+			exit(0);
+		}
 		cmd = verif_command(ast->args[0], env);
 		if (!cmd)
 		{

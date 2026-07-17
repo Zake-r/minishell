@@ -39,11 +39,14 @@
 
 
 # EXECUTION
-    - Fichier recherche dans $PATH
+	- faire marcher cd et exit
+	- dupliquer path
 	- Verifier si permission bonne pour fichier commande
     - Faire pour redirin et heredoc
     - faire en sorte que echo $PATH marche
     - gestion errer flag
+	- verif leak
+	- faire norm
 
 
 # AUTRE
