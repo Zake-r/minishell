@@ -1,0 +1,16 @@
+2026-07-27 19:13:18.531 [info] StorageMainService: creating application shared storage
+2026-07-27 19:13:18.591 [info] [shared storage] Creating shared storage database at '/home/jbossuyt/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-07-27 19:13:18.591 [info] [shared storage] Initializing fallback application storage (path: /home/jbossuyt/Documents/42/minishell_git/test_jordan/~/test~vscode/User/globalStorage/state.vscdb)
+2026-07-27 19:13:18.602 [info] [shared storage] Fallback application storage initialized with 3 items
+2026-07-27 19:13:18.604 [info] update#setState idle
+2026-07-27 19:13:41.924 [info] Extension host with pid 33696 exited with code: 0, signal: unknown.
+2026-07-27 19:13:42.801 [info] AgentHostProcessManager: agent host started
+2026-07-27 19:13:43.186 [error] [AgentHost:stderr] (node:34309) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+
+2026-07-27 19:13:48.606 [info] update#setState checking for updates
+2026-07-27 19:13:48.628 [info] update#setState idle
+2026-07-27 20:13:48.611 [info] update#setState checking for updates
+2026-07-27 20:13:48.645 [info] update#setState idle
+2026-07-27 21:13:48.615 [info] update#setState checking for updates
+2026-07-27 21:13:48.647 [info] update#setState idle

@@ -1,0 +1,23 @@
+2026-07-27 19:13:43.126 [info] Agent Host process started successfully
+2026-07-27 19:13:43.126 [error] CodeExpectedError: ENOPRO: No file system provider found for resource 'vscode-userdata:/home/jbossuyt/Documents/42/minishell_git/test_jordan/~/test~vscode/User'
+    at $i.withProvider (file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:30614)
+    at async $i.doWatch (file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:43433)
+    at async file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:43123
+2026-07-27 19:13:43.126 [error] CodeExpectedError: ENOPRO: No file system provider found for resource 'vscode-userdata:/home/jbossuyt/Documents/42/minishell_git/test_jordan/~/test~vscode/User/settings.json'
+    at $i.withProvider (file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:30614)
+    at async $i.doWatch (file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:43433)
+    at async file:///usr/share/code/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:845:43123
+2026-07-27 19:13:43.130 [info] AgentService initialized
+2026-07-27 19:13:43.137 [info] Registering agent provider: copilotcli
+2026-07-27 19:13:43.138 [info] Registering agent provider: claude
+2026-07-27 19:13:43.139 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-07-27 19:13:43.139 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-07-27 19:13:43.148 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-07-27 19:13:43.161 [info] [CommandAutoApprover] Tree-sitter initialized successfully
+2026-07-27 19:13:43.184 [info] [Copilot] Listing sessions...
+2026-07-27 19:13:43.184 [info] [Copilot] Starting CopilotClient...
+2026-07-27 19:13:43.188 [info] [Claude] SDK not downloaded yet; deferring session list until a session triggers the download
+2026-07-27 19:13:44.193 [info] [Copilot] Set CLI env: GITHUB_COPILOT_INTEGRATION_ID=vscode-chat
+2026-07-27 19:13:44.212 [info] [Copilot] Resolved CLI path: /usr/share/code/resources/app/node_modules.asar.unpacked/@github/copilot-linux-x64/index.js
+2026-07-27 19:13:44.785 [info] [Copilot] CopilotClient started successfully
+2026-07-27 19:13:44.786 [info] [Copilot] Found 0 sessions
