@@ -51,6 +51,12 @@ typedef struct s_ast
 	struct s_ast	*right;
 }	t_ast;
 
+typedef struct s_env
+{
+	char **env;
+	char **parsed_env;
+}	t_env;
+
 // parsing:
 t_token	*parsing(void);
 
@@ -81,6 +87,9 @@ t_token	*parse_line(char *line, int nb_cmd);
 
 void	execute(t_token *tokens, int nb_cmd, char **env);
 void	free_ast(t_ast *ast);
+
+void free_env(char **env);
+char **dup_env(char **env);
 
 /* ── libération ── */
 

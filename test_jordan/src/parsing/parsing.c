@@ -18,8 +18,10 @@ t_token	*parsing(void)
 	t_token	*tokens;
 
 	line = readline("> ");
-	if (!line)
-		return (NULL);
+    add_history(line);
+    rl_on_new_line();
+	// if (!line)
+	// 	return (1);
 	tokens = lexer(line);
 	if (!tokens)
 		return (NULL);
