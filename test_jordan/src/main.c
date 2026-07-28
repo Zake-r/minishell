@@ -137,9 +137,9 @@ int	main(int argc, char **argv, char **env)
 	} */
 	while (1)
 	{
-		tokens = parsing();
+		tokens = parsing(parsed_env);
 		if (!tokens)
-		return (free_tokens(tokens), 1);
+			return (free_tokens(tokens), 1);
 		ast = create_ast(&tokens);
 		// printf("\n===== AST =====\n");
 		//print_ast(ast, 0, 1);

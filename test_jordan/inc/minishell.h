@@ -58,7 +58,7 @@ typedef struct s_env
 }	t_env;
 
 // parsing:
-t_token	*parsing(void);
+t_token	*parsing(char **parsed_env);
 
 t_token	*lexer(char *line);
 t_token	*new_token(t_type type, char *value);
