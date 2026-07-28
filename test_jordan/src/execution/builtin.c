@@ -61,12 +61,12 @@ void    builtin_pwd(void)
     printf("%s\n", cwd);
 }
 
-void    builtin_env(char ***env)
+void    builtin_env(char **env)
 {
     int i = 0;
-    while (*env[i])
+    while (env[i])
     {
-        printf("%s\n", *env[i]);
+        printf("%s\n", env[i]);
         i++;
     }
 }
@@ -140,7 +140,7 @@ void	builtin_export(t_ast *ast, char ***env)
 
 	if (ast->args[1] == NULL)
 	{
-		builtin_env(env); 
+		builtin_env(*env); 
 		return ;
 	}
 	i = 1;
@@ -162,8 +162,6 @@ void    builtin_unset(t_ast *ast, char ***env)
     }
 }
 
-
-
 void    exec_builtin(t_ast *ast, char ***env)
 {
     if (strcmp(ast->args[0], "cd") == 0)
@@ -177,7 +175,7 @@ void    exec_builtin(t_ast *ast, char ***env)
     else if (strcmp(ast->args[0], "unset") == 0)
         builtin_unset(ast, env);
     else if (strcmp(ast->args[0], "env") == 0)
-        builtin_env(env);
+        builtin_env(*env);
     else if (strcmp(ast->args[0], "exit") == 0)
         exit(0);
 }

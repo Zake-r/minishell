@@ -56,7 +56,6 @@ char *verif_command(char *cmd, char **env)
 	char *final_cmd;
 	(void)cmd;
 	final_cmd = test_cmd(cmd, path);
-	printf("%s\n", final_cmd);	
 	return final_cmd;
 
 

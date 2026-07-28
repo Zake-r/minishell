@@ -645,3 +645,30 @@
 2026-07-27 21:39:41.655 [warning] [Decorations] CAPPING events from decorations provider vscode.git 377
 2026-07-27 21:39:46.698 [warning] [Decorations] CAPPING events from decorations provider vscode.git 377
 2026-07-27 21:39:51.738 [warning] [Decorations] CAPPING events from decorations provider vscode.git 377
+2026-07-27 21:43:15.912 [warning] [Decorations] CAPPING events from decorations provider vscode.git 377
+2026-07-27 21:43:17.484 [info] Extension host terminating: received terminate message from renderer
+2026-07-27 21:43:17.522 [error] TypeError: r.some is not a function
+	at h.saveToDisk (/home/jbossuyt/.vscode/extensions/vscodevim.vim-1.32.4/out/extension.js:2:654340)
+	at t.deactivate (/home/jbossuyt/.vscode/extensions/vscodevim.vim-1.32.4/out/extension.js:2:791858)
+	at m_._deactivate (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:539:14930)
+	at file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:539:12457
+	at Array.map (<anonymous>)
+	at m_._deactivateAll (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:539:12445)
+	at m_.terminate (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:539:12796)
+	at i.terminate (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:541:1072)
+	at da (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:852:11797)
+	at Pp.value (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:852:9939)
+	at T._deliver (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:431:3244)
+	at T.fire (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:431:3562)
+	at fs.fire (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:433:8509)
+	at MessagePortMain.<anonymous> (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:852:8171)
+	at MessagePortMain.emit (node:events:509:28)
+	at Object.emit (node:electron/js2c/utility_init:2:2934)
+2026-07-27 21:43:17.527 [error] Error: Channel has been closed
+	at r (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:542:3935)
+	at Object.info (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:542:4305)
+	at rw.info (/usr/share/code/resources/app/extensions/json-language-features/client/dist/node/jsonClientMain.js:14:709)
+	at ChildProcess.<anonymous> (/usr/share/code/resources/app/extensions/json-language-features/client/dist/node/jsonClientMain.js:28:36147)
+	at ChildProcess.emit (node:events:509:28)
+	at ChildProcess._handle.onexit (node:internal/child_process:295:12)
+2026-07-27 21:43:17.544 [info] Extension host with pid 34182 exiting with code 0
