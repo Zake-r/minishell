@@ -215,11 +215,9 @@ void exec_ast(t_ast *ast, char ***env)
         exec_pipe(ast, env); 
     else if (ast->type == REDIR_OUT) 
         exec_redirout(ast, env);
-    else if (ast->type == REDIR_IN) 
+     else if (ast->type == REDIR_IN) 
         exec_redirin(ast, env);
-    else if (ast->type == APPEND) 
-        exec_append(ast, env);
-        
+             
 }
 
 

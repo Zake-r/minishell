@@ -218,7 +218,7 @@ void exec_ast(t_ast *ast, char ***env)
     else if (ast->type == REDIR_IN) 
         exec_redirin(ast, env);
     else if (ast->type == APPEND) 
-        exec_append(ast, env);
+        exec_redirin(ast, env);
         
 }
 

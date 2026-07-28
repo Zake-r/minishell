@@ -142,7 +142,7 @@ int	main(int argc, char **argv, char **env)
 		return (free_tokens(tokens), 1);
 		ast = create_ast(&tokens);
 		// printf("\n===== AST =====\n");
-		//print_ast(ast, 0, 1);
+		print_ast(ast, 0, 1);
 		exec_ast(ast, &parsed_env);
 		free_ast(ast);
 	}

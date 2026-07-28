@@ -90,10 +90,6 @@ t_token	*parse_line(char *line, int nb_cmd);
 void	execute(t_token *tokens, int nb_cmd, char **env);
 void	free_ast(t_ast *ast);
 
-void exec_redirin(t_ast *ast, char ***env);
-void exec_append(t_ast *ast, char ***env);
-
-
 void free_env(char **env);
 char **dup_env(char **env);
 

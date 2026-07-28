@@ -57,7 +57,7 @@ void exec_cmd(t_ast *ast, char ***env)
         execve(cmd, ast->args, *env);
         perror("erreur execve");
         free_ast(ast);
-        exit(0);
+        exit(1);
     }
     waitpid(pid,NULL,0);
 
@@ -137,7 +137,7 @@ void exec_redirout(t_ast *ast, char ***env)
         close(fd);
         exec_ast(ast->left, env);
         free_ast(ast);
-        exit(0);
+        exit(1);
     }
     waitpid(pid, NULL, 0);
 }
@@ -215,11 +215,9 @@ void exec_ast(t_ast *ast, char ***env)
         exec_pipe(ast, env); 
     else if (ast->type == REDIR_OUT) 
         exec_redirout(ast, env);
-    else if (ast->type == REDIR_IN) 
+     else if (ast->type == REDIR_IN) 
         exec_redirin(ast, env);
-    else if (ast->type == APPEND) 
-        exec_append(ast, env);
-        
+             
 }
 
 

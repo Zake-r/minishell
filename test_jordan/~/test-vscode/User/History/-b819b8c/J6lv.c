@@ -12,62 +12,6 @@
 
 #include "../inc/minishell.h"
 
-static void	print_prefix(int depth, int is_last)
-{
-	int	i;
-
-	i = 0;
-
-	while (i < depth)
-	{
-		printf("│   ");
-		i++;
-	}
-
-	if (depth > 0)
-	{
-		if (is_last)
-			printf("└── ");
-		else
-			printf("├── ");
-	}
-}
-
-
-static char	*ast_type_name(t_type type)
-{
-	if (type == WORD)
-		return ("WORD");
-	if (type == PIPE)
-		return ("PIPE");
-	if (type == REDIR_IN)
-		return ("REDIR_IN (<)");
-	if (type == REDIR_OUT)
-		return ("REDIR_OUT (>)");
-	if (type == APPEND)
-		return ("REDIR_APPEND (>>)");
-	if (type == HEREDOC)
-		return ("HEREDOC (<<)");
-
-	return ("UNKNOWN");
-}
-
-
-static void	print_args(char **args, int depth)
-{
-	int	i;
-
-	i = 0;
-
-	while (args && args[i])
-	{
-		print_prefix(depth, 1);
-		printf("- %s\n", args[i]);
-		i++;
-	}
-}
-
-
 void	print_ast(t_ast *ast, int depth, int is_last)
 {
 	if (!ast)
@@ -118,6 +62,8 @@ void	print_ast(t_ast *ast, int depth, int is_last)
 	}
 }
 
+
+
 int	main(int argc, char **argv, char **env)
 {
 	t_token	*tokens;
@@ -142,7 +88,7 @@ int	main(int argc, char **argv, char **env)
 		return (free_tokens(tokens), 1);
 		ast = create_ast(&tokens);
 		// printf("\n===== AST =====\n");
-		//print_ast(ast, 0, 1);
+		print_ast(ast, 0, 1);
 		exec_ast(ast, &parsed_env);
 		free_ast(ast);
 	}

@@ -42,7 +42,7 @@
 # EXECUTION
 	- Faire cas particulier function cd avec pipe
 	- Verifier si permission bonne pour fichier commande
-    - Faire pour et heredoc
+    - Faire pour redirin et heredoc
     - gestion errer flag
 	- verif leak
 	- faire norm

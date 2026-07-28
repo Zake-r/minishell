@@ -57,7 +57,7 @@ void exec_cmd(t_ast *ast, char ***env)
         execve(cmd, ast->args, *env);
         perror("erreur execve");
         free_ast(ast);
-        exit(0);
+        exit(1);
     }
     waitpid(pid,NULL,0);
 
@@ -126,7 +126,7 @@ void exec_redirout(t_ast *ast, char ***env)
     }
     if (pid == 0)
     {
-        fd = open(ast->right->args[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        fd = open(ast->args[0], O_WRONLY);
         if (fd == -1)
         {
             perror("erreur fd redirection\n");
@@ -137,73 +137,11 @@ void exec_redirout(t_ast *ast, char ***env)
         close(fd);
         exec_ast(ast->left, env);
         free_ast(ast);
-        exit(0);
+        exit(1);
     }
     waitpid(pid, NULL, 0);
 }
 
-void exec_append(t_ast *ast, char ***env)
-{
-    int     fd;
-    pid_t   pid;
-    char    *filename;
-
-    filename = ast->right->args[0];
-    pid = fork();
-    if (pid == -1)
-    {
-        perror("erreur fork");
-        return ;
-    }
-    if (pid == 0)
-    {
-        fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
-        if (fd == -1)
-        {
-            perror("erreur fd redirection");
-            free_ast(ast);
-            exit(1);
-        }
-        dup2(fd, STDOUT_FILENO);
-        close(fd);
-        exec_ast(ast->left, env);
-        free_ast(ast);
-        exit(0);
-    }
-    waitpid(pid, NULL, 0);
-}
-
-
-void exec_redirin(t_ast *ast, char ***env)
-{
-    int     fd;
-    pid_t   pid;
-    char    *filename;
-
-    filename = ast->right->args[0];
-    pid = fork();
-    if (pid == -1)
-    {
-        perror("erreur fork");
-        return ;
-    }
-    if (pid == 0)
-    {
-        fd = open(filename, O_RDONLY);
-        if (fd == -1)
-        {
-            perror("erreur fd redirection");
-            free_ast(ast);
-            exit(1);
-        }
-        dup2(fd, STDIN_FILENO);
-        close(fd);
-        exec_ast(ast->left, env);
-        free_ast(ast);
-        exit(0);
-    }
-    waitpid(pid, NULL, 0);
-}
 
 void exec_ast(t_ast *ast, char ***env)
 {
@@ -215,11 +153,7 @@ void exec_ast(t_ast *ast, char ***env)
         exec_pipe(ast, env); 
     else if (ast->type == REDIR_OUT) 
         exec_redirout(ast, env);
-    else if (ast->type == REDIR_IN) 
-        exec_redirin(ast, env);
-    else if (ast->type == APPEND) 
-        exec_append(ast, env);
-        
+              
 }
 
 
