@@ -1,31 +1,84 @@
-NAME = libft.a
-SRCS = ft_isprint.c ft_putendl_fd.c ft_strlcat.c ft_substr.c \
-       ft_atoi.c ft_itoa.c ft_putnbr_fd.c ft_strlcpy.c ft_tolower.c \
-       ft_bzero.c ft_memchr.c ft_putstr_fd.c ft_strlen.c ft_toupper.c \
-       ft_calloc.c ft_memcmp.c ft_split.c ft_strmapi.c \
-       ft_isalnum.c ft_memcpy.c ft_strchr.c ft_strncmp.c \
-       ft_isalpha.c ft_memmove.c ft_strdup.c ft_strnstr.c \
-       ft_isascii.c ft_memset.c ft_striteri.c ft_strrchr.c \
-       ft_isdigit.c ft_putchar_fd.c ft_strjoin.c ft_strtrim.c \
-       get_next_line_utils.c get_next_line.c get_next_line_utils2.c
-OBJS = $(SRCS:.c=.o)
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-AR = ar -r
+# **************************************************************************** #
+#                                   Makefile                                   #
+# **************************************************************************** #
 
-all: $(NAME) 
+# =========================
+# Name
+# =========================
 
+NAME		= libft.a
+
+# =========================
+# Compilation
+# =========================
+
+CC			= cc
+
+CFLAGS		= -Wall -Wextra -Werror
+IFLAGS		= -I$(INC_DIR) -I.
+
+# =========================
+# Directories
+# =========================
+
+SRC_DIR		= src/
+OBJ_DIR		= obj/
+INC_DIR		= inc/
+
+# =========================
+# Files
+# =========================
+
+SRCS		= $(shell find $(SRC_DIR) -name "*.c")
+
+OBJS		= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+
+DEPS		= $(OBJS:.o=.d)
+
+# =========================
+# Rules
+# =========================
+
+# Main rule:
+all: $(NAME)
+
+# Lib creation:
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	@echo "Compilation Libft..."
+	@ar rcs $(NAME) $(OBJS)
+	@echo "Libft created !"
 
-%.o: %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ 
+# Compilation ".o" files:
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(dir $@)
+	@echo "Compilation $@..."
+	@$(CC) $(CFLAGS) $(IFLAGS) -MMD -MP -c $< -o $@
 
-clean: 
-	rm -f $(OBJS)
+# =========================
+# Cleaning
+# =========================
 
+# Cleaning of objects:
+clean:
+	@echo "Deleting object files libft..."
+	@rm -rf $(OBJ_DIR)
+
+# Thorough cleaning:
 fclean: clean
-	rm -f $(NAME)
+	@echo "Deleting Libft..."
+	@rm -f $(NAME)
 
+# Rebuild:
 re: fclean all
 
+# =========================
+# Dependencies
+# =========================
+
+-include $(DEPS)
+
+# =========================
+# Phony
+# =========================
+
+.PHONY: all clean fclean re
