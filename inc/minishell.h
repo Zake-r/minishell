@@ -47,7 +47,6 @@ typedef struct s_ast
 {
 	t_type			type;
 	char			**args;
-	int 			fd_heredoc;
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
