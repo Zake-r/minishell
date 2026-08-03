@@ -38,6 +38,7 @@ t_ast	*new_ast_node(t_type type, int nb_arg)
 	ast->args = NULL;
 	ast->left = NULL;
 	ast->right = NULL;
+	ast->fd_heredoc = -1;
 
 	if (nb_arg > 0)
 		ast->args = malloc(sizeof(char *) * (nb_arg + 1));

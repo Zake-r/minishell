@@ -43,7 +43,7 @@
 	- Faire cas particulier function cd avec pipe
 	- Verifier si permission bonne pour fichier commande
     - Faire pour et heredoc
-    - gestion errer flag
+    - gestion erreur flag
 	- verif leak
 	- faire norm
 

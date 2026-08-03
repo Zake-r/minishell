@@ -47,6 +47,11 @@ void exec_cmd(t_ast *ast, char ***env)
     }
     if (pid == 0)
     {
+		if (ast->fd_heredoc != -1)
+		{
+			dup2(ast->fd_heredoc, STDIN_FILENO);
+			close(ast->fd_heredoc);
+		}
 		cmd = verif_command(ast->args[0], *env);
 		if (!cmd)
 		{
@@ -59,6 +64,8 @@ void exec_cmd(t_ast *ast, char ***env)
         free_ast(ast);
         exit(0);
     }
+	if (ast->fd_heredoc != -1)
+		close(ast->fd_heredoc);
     waitpid(pid,NULL,0);
 
 }
@@ -205,6 +212,52 @@ void exec_redirin(t_ast *ast, char ***env)
     waitpid(pid, NULL, 0);
 }
 
+void exec_heredoc(t_ast *ast)
+{
+    int     fd[2];
+    pid_t   pid;
+	char *line;
+	char *delim;
+
+	delim = ast->right->args[0];
+	if (pipe(fd) == -1)
+	{
+		perror("error pipe");
+		return ;
+	}
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("erreur fork");
+        return ;
+    }
+    if (pid == 0)
+    {
+        //dup2(fd[0], STDIN_FILENO);
+		//close(fd[0]);
+		while (1)
+		{
+			line = readline("heredoc> ");
+			if (!line || ((ft_strlen(line) == ft_strlen(delim)) && (ft_strncmp(line, delim,ft_strlen(ast->right->args[0])))))
+			{
+				free(line);
+				break ;
+			}
+			write(fd[1],line,ft_strlen(line));
+			write(fd[1],"\n",1);
+			free(line);
+			close(fd[1]);
+			exit(0);
+		}
+
+    }
+	close(fd[1]);
+    waitpid(pid, NULL, 0);
+	ast->fd_heredoc = fd[0];
+}
+
+
+
 void exec_ast(t_ast *ast, char ***env)
 {
     if (!ast)
@@ -219,7 +272,8 @@ void exec_ast(t_ast *ast, char ***env)
         exec_redirin(ast, env);
     else if (ast->type == APPEND) 
         exec_append(ast, env);
-        
+    else if (ast->type == HEREDOC) 
+    	exec_heredoc(ast);       
 }
 
 
