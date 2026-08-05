@@ -114,5 +114,6 @@ void	free_all(t_token *tokens, char *line);
 void	free_tokens(t_token *tokens);
 
 char *verif_command(char *cmd, char **env);
+void handle_ctr(int num);
 
 #endif

@@ -125,6 +125,8 @@ t_token	*parsing(char **parsed_env)
     rl_on_new_line();
 	// if (!line)
 	// 	return (1);
+	if (!line)
+		return NULL;
 	tokens = lexer(line);
 	if (!tokens)
 		return (NULL);

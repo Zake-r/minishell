@@ -118,6 +118,8 @@ void	print_ast(t_ast *ast, int depth, int is_last)
 	}
 }
 
+
+
 int	main(int argc, char **argv, char **env)
 {
 	t_token	*tokens;
@@ -135,6 +137,8 @@ int	main(int argc, char **argv, char **env)
 		perror("dup_env");
 		return (1);
 	} */
+	signal(SIGINT, handle_ctr);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		tokens = parsing(parsed_env);

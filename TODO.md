@@ -40,14 +40,14 @@
 
 
 # EXECUTION
-	- Faire cas particulier function cd avec pipe
+	- faire signal pour heredoc
+	- faire le $? (code de sortie)
+	- faire marcher les /bin/echo
 	- Verifier si permission bonne pour fichier commande
-    - Faire pour et heredoc
     - gestion erreur flag
 	- verif leak
 	- faire norm
 
 
 # AUTRE
-    - gestion signal
 
