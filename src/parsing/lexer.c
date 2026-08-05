@@ -62,6 +62,8 @@ t_token	*lexer(char *line)
 	char	*word;
 
 	tokens = NULL;
+	if (!line)
+		return (NULL);
 	while (*line)
 	{
 		while (*line == ' ' || *line == '\t')

@@ -33,6 +33,7 @@ void exec_cmd(t_ast *ast, char ***env)
     pid_t pid;
 	char *cmd;
 
+	cmd = NULL;
     if (is_builtin(ast->args[0]))
 	{
     	exec_builtin(ast, env);
@@ -60,7 +61,7 @@ void exec_cmd(t_ast *ast, char ***env)
         exit(0);
     }
     waitpid(pid,NULL,0);
-
+	free(cmd);
 }
 
 void exec_pipe(t_ast *ast, char ***env)
@@ -226,6 +227,7 @@ void exec_heredoc(t_ast *ast, char ***env)
     }
     if (pid == 0)
     {
+		signal(SIGINT, handle_ctrlc_heredoc);
 		while (1)
 		{
 			line = readline("heredoc> ");

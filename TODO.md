@@ -40,11 +40,8 @@
 
 
 # EXECUTION
-	- faire signal pour heredoc
+	- faire signal dans process enfant
 	- faire le $? (code de sortie)
-	- faire marcher les /bin/echo
-	- Verifier si permission bonne pour fichier commande
-    - gestion erreur flag
 	- verif leak
 	- faire norm
 

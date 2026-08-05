@@ -137,13 +137,13 @@ int	main(int argc, char **argv, char **env)
 		perror("dup_env");
 		return (1);
 	} */
-	signal(SIGINT, handle_ctr);
+	signal(SIGINT, handle_ctrlc);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		tokens = parsing(parsed_env);
 		if (!tokens)
-			return (free_tokens(tokens), 1);
+			break ;
 		ast = create_ast(&tokens);
 		// printf("\n===== AST =====\n");
 		//print_ast(ast, 0, 1);
