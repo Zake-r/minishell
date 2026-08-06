@@ -40,7 +40,6 @@
 
 
 # EXECUTION
-	- faire signal dans process enfant
 	- faire le $? (code de sortie)
 	- verif leak
 	- faire norm

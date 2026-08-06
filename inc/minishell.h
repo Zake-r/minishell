@@ -26,6 +26,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+extern int	return_value;
+
+
 typedef enum e_type
 {
 	WORD,
@@ -58,7 +61,7 @@ typedef struct s_env
 }	t_env;
 
 // parsing:
-t_token	*parsing(char **parsed_env);
+t_token	*parsing(char *line, char **parsed_env);
 
 t_token	*lexer(char *line);
 t_token	*new_token(t_type type, char *value);

@@ -125,8 +125,9 @@ int	main(int argc, char **argv, char **env)
 	t_token	*tokens;
 	t_ast	*ast;
 	char **parsed_env = dup_env(env);
-	//t_env	env_struct;
+	char *line;
 
+	int return_value = 0;
 	(void)argv;
 	if (argc != 1)
 		return (printf("The number of arguments is incorrect\n"), 1);
@@ -141,9 +142,19 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		tokens = parsing(parsed_env);
-		if (!tokens)
+		line = readline("> ");
+		add_history(line);
+		rl_on_new_line();
+		if (!line)
+		{
+			printf("exit\n");
 			break ;
+		}
+		if (*line == '\0')
+			continue ;
+		tokens = parsing(line, parsed_env);
+		if (!tokens)
+			continue ;
 		ast = create_ast(&tokens);
 		// printf("\n===== AST =====\n");
 		//print_ast(ast, 0, 1);
@@ -151,5 +162,5 @@ int	main(int argc, char **argv, char **env)
 		free_ast(ast);
 	}
 	free_env(parsed_env);
-	return (0);
+	return (return_value);
 }

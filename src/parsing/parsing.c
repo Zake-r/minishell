@@ -114,15 +114,12 @@ void	replace_var_env(t_token *tokens, char **env)
 	}
 }
 
-t_token	*parsing(char **parsed_env)
+t_token	*parsing(char *line, char **parsed_env)
 {
 	(void)parsed_env;
-	char	*line;
 	t_token	*tokens;
 
-	line = readline("> ");
-    add_history(line);
-    rl_on_new_line();
+
 	// if (!line)
 	// 	return (1);
 	tokens = lexer(line);
