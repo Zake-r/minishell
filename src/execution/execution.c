@@ -26,11 +26,7 @@ void	free_ast(t_ast *ast)
 	free_one_ast_node(ast);
 }
 
-/*
-** Convertit un status de waitpid() en exit code bash-like :
-** - process terminé normalement -> WEXITSTATUS
-** - process tué par un signal -> 128 + numéro du signal
-*/
+
 int	status_to_exit_code(int status)
 {
 	if (WIFEXITED(status))

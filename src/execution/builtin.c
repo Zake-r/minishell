@@ -35,7 +35,7 @@ int	builtin_cd(t_ast *ast, char ***env)
 
 	if (ast->args[2])
 	{
-		write(2, " too many arguments\n", 20);
+		write(2, "bash: cd: too many arguments\n", 30);
 		return (2);
 	}
 	old_pwd = getcwd(NULL, 0);
@@ -222,7 +222,7 @@ void	builtin_exit(t_ast *ast)
 	if (ast->args[1] && ast->args[2])
 	{
 		fprintf(stderr, "exit: too many arguments\n");
-		g_exit_status = 1;
+		g_exit_status = 2;
 		return ;
 	}
 	if (ast->args[1])

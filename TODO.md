@@ -7,7 +7,7 @@
 - project complet super explication : https://github.com/zelhajou/ft_unix_minishell
 - project explication workflow: https://github.com/multitudes/42-minishell
 - tableur test: https://docs.google.com/spreadsheets/d/1uJHQu0VPsjjBkR4hxOeCMEt3AOM1Hp_SmUzPFhAH-nA/edit?gid=0#gid=0
-
+- tester:                 git clone https://github.com/LucasKuhn/minishell_tester.git 
 # NOTES POUR NOUS 2
 - La recherche dans le PATH c est dans la partie EXECUTION pas dans le parser ! (C est a jbossuyt de faire)
 
