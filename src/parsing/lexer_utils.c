@@ -43,21 +43,38 @@ void	add_token(t_token **lst, t_token *new)
 	tmp->next = new;
 }
 
+static int	is_quote(char c)
+{
+	return (c == '\'' || c == '"');
+}
+
 char	*extract_word(char **line)
 {
 	char	*start;
-	char	*word;
-	int		len;
+	char	quote;
 
 	start = *line;
-	while (**line && **line != ' ' && **line != '\t' && **line != '|'
-		&& **line != '<' && **line != '>')
-		(*line)++;
-	len = *line - start;
-	word = malloc(len + 1);
-	if (!word)
-		return (NULL);
-	ft_strncpy(word, start, len);
-	word[len] = '\0';
-	return (word);
+	quote = 0;
+	while (**line)
+	{
+		if (quote == 0 && is_quote(**line))
+		{
+			quote = **line;
+			(*line)++;
+		}
+		else if (quote != 0 && **line == quote)
+		{
+			quote = 0;
+			(*line)++;
+		}
+		else if (quote == 0
+			&& (**line == ' ' || **line == '\t'
+				|| **line == '|' || **line == '<' || **line == '>'))
+		{
+			break ;
+		}
+		else
+			(*line)++;
+	}
+	return (ft_substr(start, 0, *line - start));
 }

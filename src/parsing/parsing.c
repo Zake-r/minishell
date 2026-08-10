@@ -119,29 +119,58 @@ void	replace_var_env(char **value, char **env, int is_trim)
 	}
 }
 
-void remove_quote_if_needed(t_token *tokens, char **env)
-{    
-	char *tmp;
-	int is_trim;
+static int	is_quote(char c)
+{
+	return (c == '\'' || c == '"');
+}
 
-	is_trim = 0;
+char	*remove_quotes(char *str)
+{
+	char	*tmp;
+	char	quote;
+	int		i;
+	int		j;
+
+	tmp = malloc(ft_strlen(str) + 1);
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	j = 0;
+	quote = 0;
+	while (str[i])
+	{
+		if (quote == 0 && is_quote(str[i]))
+			quote = str[i];
+		else if (quote != 0 && str[i] == quote)
+			quote = 0;
+		else
+			tmp[j++] = str[i];
+		i++;
+	}
+	tmp[j] = '\0';
+	return (tmp);
+}
+
+void	remove_quote_if_needed(t_token *tokens, char **env)
+{
+	char	*tmp;
+	int		is_trim;
+
 	while (tokens)
 	{
-		if ((tokens->value)[0] == '"' || (tokens->value)[0] == '\'')	
-		{
-			if ((tokens->value)[0] == '"')
-				tmp = ft_strtrim(tokens->value, "\"");
-			if ((tokens->value)[0] == '\'')
-				tmp = ft_strtrim(tokens->value, "\'");
-			if ((tokens->value)[0] == '\'')
-				is_trim = 1;
-			free(tokens->value);
-			tokens->value = tmp;
-			
-		}
+		is_trim = 0;
+		tmp = remove_quotes(tokens->value);
+		if (!tmp)
+			return ;
+
+		if (ft_strchr(tokens->value, '\''))
+			is_trim = 1;
+
+		free(tokens->value);
+		tokens->value = tmp;
+
 		replace_var_env(&tokens->value, env, is_trim);
 		tokens = tokens->next;
-		is_trim = 0;
 	}
 }
 

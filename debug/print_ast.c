@@ -102,4 +102,5 @@ void	print_ast(t_ast *ast, int depth, int is_last)
 
 		print_ast(ast->right, depth + 2, 1);
 	}
+	printf("\n");
 }
