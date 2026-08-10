@@ -33,6 +33,11 @@ int	builtin_cd(t_ast *ast, char ***env)
 	char	*target;
 	char	*old_pwd;
 
+	if (ast->args[2])
+	{
+		write(2, " too many arguments\n", 20);
+		return (2);
+	}
 	old_pwd = getcwd(NULL, 0);
 	if (ast->args[1] == NULL)
 	{
@@ -41,7 +46,7 @@ int	builtin_cd(t_ast *ast, char ***env)
 		{
 			fprintf(stderr, "cd: HOME not set\n");
 			free(old_pwd);
-			return (1);
+			return (2);
 		}
 	}
 	else
