@@ -25,8 +25,9 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <errno.h>
 
-extern int	return_value;
+extern int	g_exit_status;
 
 
 typedef enum e_type

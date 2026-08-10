@@ -66,6 +66,7 @@ char	*check_env(char *str, char **env)
 	int		var_len;
 	char	*name;
 	char	*value;
+	char 	*status_str;
 
 	if (!ft_strchr(str, '$'))
 		return (ft_strdup(str));
@@ -76,6 +77,14 @@ char	*check_env(char *str, char **env)
 	j = 0;
 	while (str[i])
 	{
+		if (str[i] == '$' && str[i + 1] == '?')
+		{
+			status_str = ft_itoa(g_exit_status);
+			ft_strlcpy(result + j, status_str, ft_strlen(status_str) + 1);
+			j += ft_strlen(status_str);
+			free(status_str);
+			i += 2;
+		}
 		if (str[i] == '$' && (ft_isalpha(str[i + 1]) || str[i + 1] == '_'))
 		{
 			name = get_var_name(str, i + 1, &var_len);
@@ -95,22 +104,44 @@ char	*check_env(char *str, char **env)
 	return (result);
 }
 
-void	replace_var_env(t_token *tokens, char **env)
+void	replace_var_env(char **value, char **env, int is_trim)
 {
 	char	*new_value;
 
+	if (*value && ft_strchr(*value, '$') && !is_trim)
+	{
+		new_value = check_env(*value, env);
+		if (new_value)
+		{
+			free(*value);
+			*value = new_value;
+		}
+	}
+}
+
+void remove_quote_if_needed(t_token *tokens, char **env)
+{    
+	char *tmp;
+	int is_trim;
+
+	is_trim = 0;
 	while (tokens)
 	{
-		if (tokens->value && ft_strchr(tokens->value, '$'))
+		if ((tokens->value)[0] == '"' || (tokens->value)[0] == '\'')	
 		{
-			new_value = check_env(tokens->value, env);
-			if (new_value)
-			{
-				free(tokens->value);
-				tokens->value = new_value;
-			}
+			if ((tokens->value)[0] == '"')
+				tmp = ft_strtrim(tokens->value, "\"");
+			if ((tokens->value)[0] == '\'')
+				tmp = ft_strtrim(tokens->value, "\'");
+			if ((tokens->value)[0] == '\'')
+				is_trim = 1;
+			free(tokens->value);
+			tokens->value = tmp;
+			
 		}
+		replace_var_env(&tokens->value, env, is_trim);
 		tokens = tokens->next;
+		is_trim = 0;
 	}
 }
 
@@ -119,15 +150,12 @@ t_token	*parsing(char *line, char **parsed_env)
 	(void)parsed_env;
 	t_token	*tokens;
 
-
-	// if (!line)
-	// 	return (1);
 	tokens = lexer(line);
 	if (!tokens)
 		return (NULL);
 	if (syntax_check(tokens))
 		return (free_all(tokens, line), NULL);
-	replace_var_env(tokens, parsed_env);
+	remove_quote_if_needed(tokens, parsed_env);
 	free(line);
 	return (tokens);
 }

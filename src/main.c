@@ -12,6 +12,8 @@
 
 #include "../inc/minishell.h"
 
+int g_exit_status = 0;
+
 static void	print_prefix(int depth, int is_last)
 {
 	int	i;
@@ -127,7 +129,7 @@ int	main(int argc, char **argv, char **env)
 	char **parsed_env = dup_env(env);
 	char *line;
 
-	int return_value = 0;
+
 	(void)argv;
 	if (argc != 1)
 		return (printf("The number of arguments is incorrect\n"), 1);
@@ -162,5 +164,5 @@ int	main(int argc, char **argv, char **env)
 		free_ast(ast);
 	}
 	free_env(parsed_env);
-	return (return_value);
+	return (g_exit_status);
 }
