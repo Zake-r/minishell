@@ -20,38 +20,56 @@ static int	is_redirection(t_type type)
 		|| type == HEREDOC);
 }
 
+static int	syntax_error_token(char *token)
+{
+	if (!token)
+	{
+		g_exit_status = 2;
+		return (printf("syntax error near unexpected token `newline'\n"));
+	}
+	g_exit_status = 2;
+	return (printf("syntax error near unexpected token `%s'\n", token));
+}
+
 static int	check_first(t_token *token)
 {
 	if (!token)
 		return (0);
 	if (token->type == PIPE)
-		return (printf("syntax error\n"), 1);
-	return (0);
-}
-
-static int	check_last(t_token *token)
-{
-	while (token->next)
-		token = token->next;
-	if (token->type == PIPE)
-		return (printf("syntax error\n"), 1);
-	if (is_redirection(token->type))
-		return (printf("syntax error\n"), 1);
+	{
+		syntax_error_token(token->value);
+		return (1);
+	}
 	return (0);
 }
 
 static int	check_tokens(t_token *token)
 {
-	while (token && token->next)
+	while (token)
 	{
-		if (token->type == PIPE && token->next->type == PIPE)
-			return (printf("syntax error\n"), 1);
-		if (is_redirection(token->type) && is_redirection(token->next->type))
-			return (printf("syntax error\n"), 1);
-		if (token->type == PIPE && is_redirection(token->next->type))
-			return (printf("syntax error\n"), 1);
-		if (is_redirection(token->type) && token->next->type == PIPE)
-			return (printf("syntax error\n"), 1);
+		if (token->type == PIPE && token->next && token->next->type == PIPE)
+		{
+			syntax_error_token(token->next->value);
+			return (1);
+		}
+		if (is_redirection(token->type))
+		{
+			if (!token->next)
+			{
+				syntax_error_token(NULL);
+				return (1);
+			}
+			if (token->next->type == PIPE)
+			{
+				syntax_error_token(token->next->value);
+				return (1);
+			}
+			if (is_redirection(token->next->type))
+			{
+				syntax_error_token(token->next->value);
+				return (1);
+			}
+		}
 		token = token->next;
 	}
 	return (0);
@@ -60,8 +78,6 @@ static int	check_tokens(t_token *token)
 int	syntax_check(t_token *tokens)
 {
 	if (check_first(tokens))
-		return (1);
-	if (check_last(tokens))
 		return (1);
 	if (check_tokens(tokens))
 		return (1);

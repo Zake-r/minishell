@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_simple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbusquet <jbusquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:33 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 21:37:57 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:09:31 by jbusquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	builtin_exit(t_ast *ast)
 	if (ast->args[1] && ast->args[2])
 	{
 		fprintf(stderr, "exit: too many arguments\n");
-		g_exit_status = 2;
+		g_exit_status = 1;
 		return ;
 	}
 	if (ast->args[1])

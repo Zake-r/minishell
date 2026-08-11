@@ -25,10 +25,9 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <errno.h>
+# include <errno.h>
 
 extern int	g_exit_status;
-
 
 typedef enum e_type
 {
@@ -63,17 +62,13 @@ typedef struct s_env
 
 // parsing:
 t_token	*parsing(char *line, char **parsed_env);
-
 t_token	*lexer(char *line);
 t_token	*new_token(t_type type, char *value);
 void	add_token(t_token **lst, t_token *new);
 char	*extract_word(char **line);
-
 int		syntax_check(t_token *tokens);
-
+void	remove_quote_if_needed(t_token **tokens, char **env);
 t_ast	*create_ast(t_token **tokens);
-
-
 
 /* ── helpers ── */
 
@@ -93,7 +88,6 @@ int		builtin_unset(t_ast *ast, char ***env);
 void	builtin_exit(t_ast *ast);
 void	exec_builtin(t_ast *ast, char ***env);
 
-
 /* ── env ── */
 void	free_env(char **env);
 char	**dup_env(char **env);
@@ -102,7 +96,6 @@ int		env_find_index(char **env, char *name);
 char	*build_entry(char *name, char *value);
 char	**env_set(char **env, char *name, char *value);
 char	**env_unset(char **env, char *name);
-
 
 /* ── parsing ── */
 
@@ -126,7 +119,6 @@ void	free_one_ast_node(t_ast *ast);
 /* ── status ── */
 int		status_to_exit_code(int status);
 
-
 /* ── libération ── */
 
 void	exec_cmd(t_ast *ast, char ***env);
@@ -140,8 +132,5 @@ void	free_tokens(t_token *tokens);
 char *verif_command(char *cmd, char **env);
 void handle_ctrlc(int num);
 void handle_ctrlc_heredoc(int num);
-
-
-
 
 #endif

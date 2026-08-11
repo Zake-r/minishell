@@ -48,6 +48,11 @@ static int	is_quote(char c)
 	return (c == '\'' || c == '"');
 }
 
+static int	is_separator(char c)
+{
+	return (c == ' ' || c == '\t' || c == '|' || c == '<' || c == '>');
+}
+
 char	*extract_word(char **line)
 {
 	char	*start;
@@ -67,12 +72,8 @@ char	*extract_word(char **line)
 			quote = 0;
 			(*line)++;
 		}
-		else if (quote == 0
-			&& (**line == ' ' || **line == '\t'
-				|| **line == '|' || **line == '<' || **line == '>'))
-		{
+		else if (quote == 0 && is_separator(**line))
 			break ;
-		}
 		else
 			(*line)++;
 	}

@@ -124,7 +124,7 @@ t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 		return (NULL);
 
 
-	file = create_ast_filename(tokens); 
+	file = create_ast_filename(tokens);
 	if (!file)
 		return (NULL);
 

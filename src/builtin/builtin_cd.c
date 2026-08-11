@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbusquet <jbusquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:22 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 21:53:38 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:09:31 by jbusquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	builtin_cd(t_ast *ast, char ***env)
 	if (ast->args[2])
 	{
 		write(2, "bash: cd: too many arguments\n", 30);
-		return (2);
+		return (1);
 	}
 	old_pwd = getcwd(NULL, 0);
 	target = get_cd_target(ast, env);
