@@ -56,9 +56,29 @@ typedef struct s_ast
 
 typedef struct s_env
 {
-	char **env;
-	char **parsed_env;
+	char	**env;
+	char	**parsed_env;
 }	t_env;
+
+typedef struct s_copy_ctx
+{
+	char	*str;
+	char	*result;
+}	t_copy_ctx;
+
+typedef struct s_unit_ctx
+{
+	char	*str;
+	char	*quote;
+	char	**env;
+}	t_unit_ctx;
+
+typedef struct s_unit_out
+{
+	char	*value;
+	int		is_literal;
+	char	literal;
+}	t_unit_out;
 
 // parsing:
 t_token	*parsing(char *line, char **parsed_env);
@@ -69,9 +89,20 @@ char	*extract_word(char **line);
 int		syntax_check(t_token *tokens);
 void	remove_quote_if_needed(t_token **tokens, char **env);
 t_ast	*create_ast(t_token **tokens);
+int		is_quote(char c);
+int		is_var_char(char c);
+char	*get_var_name(char *str, int i, int *len);
+char	*check_env(char *str, char **env);
+void	replace_var_env(char **value, char **env, int is_trim);
+int		word_count(t_token *token);
+t_ast	*new_ast_node(t_type type, int nb_arg);
+t_ast	*create_ast_word(t_token **tokens);
+int		is_redirection(t_type type);
+t_ast	*create_ast_filename(t_token **tokens);
+int		calc_new_len(char *str, char **env);
+char	*expand_and_unquote(char *str, char **env);
 
 /* ── helpers ── */
-
 int		count_pipe(char *s);
 int		count_word_to_pipe(char *s);
 
@@ -98,7 +129,6 @@ char	**env_set(char **env, char *name, char *value);
 char	**env_unset(char **env, char *name);
 
 /* ── parsing ── */
-
 t_token	*parse_line(char *line, int nb_cmd);
 
 /* ── exécution ── */
@@ -120,7 +150,6 @@ void	free_one_ast_node(t_ast *ast);
 int		status_to_exit_code(int status);
 
 /* ── libération ── */
-
 void	exec_cmd(t_ast *ast, char ***env);
 void	exec_pipe(t_ast *ast, char ***env);
 void	exec_ast(t_ast *ast, char ***env);
@@ -128,9 +157,8 @@ void	exec_ast(t_ast *ast, char ***env);
 // free:
 void	free_all(t_token *tokens, char *line);
 void	free_tokens(t_token *tokens);
-
-char *verif_command(char *cmd, char **env);
-void handle_ctrlc(int num);
-void handle_ctrlc_heredoc(int num);
+char	*verif_command(char *cmd, char **env);
+void	handle_ctrlc(int num);
+void	handle_ctrlc_heredoc(int num);
 
 #endif

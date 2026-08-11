@@ -66,7 +66,7 @@ int	builtin_cd(t_ast *ast, char ***env)
 	if (ast->args[2])
 	{
 		write(2, "bash: cd: too many arguments\n", 30);
-		return (2);
+		return (1);
 	}
 	old_pwd = getcwd(NULL, 0);
 	target = get_cd_target(ast, env);

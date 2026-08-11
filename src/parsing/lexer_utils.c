@@ -43,11 +43,6 @@ void	add_token(t_token **lst, t_token *new)
 	tmp->next = new;
 }
 
-static int	is_quote(char c)
-{
-	return (c == '\'' || c == '"');
-}
-
 static int	is_separator(char c)
 {
 	return (c == ' ' || c == '\t' || c == '|' || c == '<' || c == '>');

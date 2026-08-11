@@ -12,20 +12,14 @@
 
 #include "../inc/minishell.h"
 
-int g_exit_status = 0;
+int	g_exit_status = 0;
 
-int	main(int argc, char **argv, char **env)
+static void	shell_loop(char **parsed_env)
 {
 	t_token	*tokens;
 	t_ast	*ast;
-	char **parsed_env = dup_env(env);
-	char *line;
+	char	*line;
 
-	(void)argv;
-	if (argc != 1)
-		return (printf("The number of arguments is incorrect\n"), 1);
-	signal(SIGINT, handle_ctrlc);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		line = readline("minishell$ ");
@@ -45,6 +39,19 @@ int	main(int argc, char **argv, char **env)
 		exec_ast(ast, &parsed_env);
 		free_ast(ast);
 	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	char	**parsed_env;
+
+	parsed_env = dup_env(env);
+	(void)argv;
+	if (argc != 1)
+		return (printf("The number of arguments is incorrect\n"), 1);
+	signal(SIGINT, handle_ctrlc);
+	signal(SIGQUIT, SIG_IGN);
+	shell_loop(parsed_env);
 	free_env(parsed_env);
 	return (g_exit_status);
 }

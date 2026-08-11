@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-static int	is_redirection(t_type type)
+int	is_redirection(t_type type)
 {
 	return (type == REDIR_IN
 		|| type == REDIR_OUT
@@ -47,28 +47,16 @@ static int	check_tokens(t_token *token)
 {
 	while (token)
 	{
-		if (token->type == PIPE && token->next && token->next->type == PIPE)
-		{
-			syntax_error_token(token->next->value);
-			return (1);
-		}
+		if (token->type == PIPE && token->next
+			&& token->next->type == PIPE)
+			return (syntax_error_token(token->next->value), 1);
 		if (is_redirection(token->type))
 		{
 			if (!token->next)
-			{
-				syntax_error_token(NULL);
-				return (1);
-			}
-			if (token->next->type == PIPE)
-			{
-				syntax_error_token(token->next->value);
-				return (1);
-			}
-			if (is_redirection(token->next->type))
-			{
-				syntax_error_token(token->next->value);
-				return (1);
-			}
+				return (syntax_error_token(NULL), 1);
+			if (token->next->type == PIPE
+				|| is_redirection(token->next->type))
+				return (syntax_error_token(token->next->value), 1);
 		}
 		token = token->next;
 	}
