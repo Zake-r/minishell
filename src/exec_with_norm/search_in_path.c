@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:27 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 21:04:50 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:30:14 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	free_split(char **arr)
 	free(arr);
 }
 
-
 int	is_path(char *cmd)
 {
 	int	i;
@@ -40,37 +39,36 @@ int	is_path(char *cmd)
 	return (0);
 }
 
-
-char **find_path(char **env)
+char	**find_path(char **env)
 {
-	char *path;
-	char **path_splited;
-	int i;
+	char	*path;
+	char	**path_splited;
+	int		i;
 
 	path = NULL;
 	i = 0;
-	
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 		{
 			path = env[i];
-			break;
+			break ;
 		}
 		i++;
 	}
 	if (!path)
 		return (NULL);
 	path_splited = ft_split(path + 5, ':');
-	return path_splited;
+	return (path_splited);
 }
 
-char *test_cmd(char *cmd, char **path)
+char	*test_cmd(char *cmd, char **path)
 {
-	int i = 0;
-	char *final_cmd;
-	char *cmd_with_dash;
+	int		i;
+	char	*final_cmd;
+	char	*cmd_with_dash;
 
+	i = 0;
 	cmd_with_dash = ft_strjoin("/", cmd);
 	while (path[i])
 	{
@@ -85,7 +83,6 @@ char *test_cmd(char *cmd, char **path)
 	}
 	free(cmd_with_dash);
 	return (NULL);
-
 }
 
 char	*verif_command(char *cmd, char **env)

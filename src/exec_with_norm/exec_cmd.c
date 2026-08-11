@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:11 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 21:07:35 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:24:14 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static void	print_exec_error(char *arg, char *msg)
 	write(2, msg, ft_strlen(msg));
 }
 
+static void	handle_cmd_not_found(t_ast *ast)
+{
+	if (errno == EACCES)
+	{
+		print_exec_error(ast->args[0], "Permission denied\n");
+		free_ast(ast);
+		exit(126);
+	}
+	print_exec_error(ast->args[0], "command not found\n");
+	free_ast(ast);
+	exit(127);
+}
 
 static void	exec_cmd_child(t_ast *ast, char ***env)
 {
@@ -36,17 +48,7 @@ static void	exec_cmd_child(t_ast *ast, char ***env)
 
 	cmd = verif_command(ast->args[0], *env);
 	if (!cmd)
-	{
-		if (errno == EACCES)
-		{
-			print_exec_error(ast->args[0], "Permission denied\n");
-			free_ast(ast);
-			exit(126);
-		}
-		print_exec_error(ast->args[0], "command not found\n");
-		free_ast(ast);
-		exit(127);
-	}
+		handle_cmd_not_found(ast);
 	execve(cmd, ast->args, *env);
 	if (errno == EISDIR)
 		print_exec_error(ast->args[0], "Is a directory\n");

@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:54:57 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 13:54:58 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:13:44 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	free_ast(t_ast *ast)
 	free_ast(ast->left);
 	free_one_ast_node(ast);
 }
-
 
 void	exec_ast(t_ast *ast, char ***env)
 {

@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:18 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 13:55:19 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:20:56 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,36 @@ static void	exec_pipe_right(t_ast *ast, char ***env, int *fd)
 	exit(g_exit_status);
 }
 
+static pid_t	fork_or_fail(t_ast *ast, int *fd)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("erreur fork");
+		g_exit_status = 1;
+		close(fd[0]);
+		close(fd[1]);
+		free_ast(ast);
+	}
+	return (pid);
+}
+
+static void	wait_pipe(pid_t pid_l, pid_t pid_r)
+{
+	int	status_r;
+
+	waitpid(pid_l, NULL, 0);
+	waitpid(pid_r, &status_r, 0);
+	g_exit_status = status_to_exit_code(status_r);
+}
+
 void	exec_pipe(t_ast *ast, char ***env)
 {
 	pid_t	pid_l;
 	pid_t	pid_r;
 	int		fd[2];
-	int		status_r;
 
 	if (pipe(fd) == -1)
 	{
@@ -45,29 +69,17 @@ void	exec_pipe(t_ast *ast, char ***env)
 		g_exit_status = 1;
 		return ;
 	}
-	pid_l = fork();
+	pid_l = fork_or_fail(ast, fd);
 	if (pid_l == -1)
-	{
-		perror("erreur fork");
-		g_exit_status = 1;
-		free_ast(ast);
 		return ;
-	}
 	if (pid_l == 0)
 		exec_pipe_left(ast, env, fd);
-	pid_r = fork();
+	pid_r = fork_or_fail(ast, fd);
 	if (pid_r == -1)
-	{
-		perror("erreur fork");
-		g_exit_status = 1;
-		free_ast(ast);
 		return ;
-	}
 	if (pid_r == 0)
 		exec_pipe_right(ast, env, fd);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid_l, NULL, 0);
-	waitpid(pid_r, &status_r, 0);
-	g_exit_status = status_to_exit_code(status_r);
+	wait_pipe(pid_l, pid_r);
 }
