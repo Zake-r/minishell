@@ -93,6 +93,20 @@ int	is_redirection(t_type type)
 	└── right -> WORD(file)
 
 */
+t_ast *create_ast_filename(t_token **tokens)
+{
+	t_ast	*ast;
+
+	ast = new_ast_node(WORD, 1);
+	if (!ast)
+		return (NULL);
+	ast->args[0] = (*tokens)->value;
+	ast->args[1] = NULL;
+	*tokens = (*tokens)->next;
+	return (ast);
+}
+
+
 t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 {
 	t_ast	*redir;
@@ -110,7 +124,7 @@ t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 		return (NULL);
 
 
-	file = create_ast_word(tokens);
+	file = create_ast_filename(tokens); 
 	if (!file)
 		return (NULL);
 
@@ -123,7 +137,7 @@ t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 }
 
 
-t_ast	*create_command(t_token **tokens)
+/* t_ast	*create_command(t_token **tokens)
 {
 	t_ast	*cmd;
 
@@ -141,6 +155,62 @@ t_ast	*create_command(t_token **tokens)
 	}
 
 	return (cmd);
+} */
+
+static int count_cmd_words(t_token *tokens)
+{
+	int	count;
+
+	count = 0;
+	while (tokens && tokens->type != PIPE)
+	{
+		if (tokens->type == WORD)
+		{
+			count++;
+			tokens = tokens->next;
+		}
+		else if (is_redirection(tokens->type))
+		{
+			tokens = tokens->next;
+			if (tokens)
+				tokens = tokens->next;
+		}
+		else
+			break ;
+	}
+	return (count);
+}
+
+t_ast *create_command(t_token **tokens)
+{
+	t_ast	*cmd;
+	t_ast	*result;
+	int		i;
+
+	cmd = new_ast_node(WORD, count_cmd_words(*tokens));
+	if (!cmd)
+		return (NULL);
+	result = cmd;
+	i = 0;
+	while (*tokens && (*tokens)->type != PIPE)
+	{
+		if ((*tokens)->type == WORD)
+		{
+			cmd->args[i] = (*tokens)->value;
+			i++;
+			*tokens = (*tokens)->next;
+		}
+		else if (is_redirection((*tokens)->type))
+		{
+			result = create_redirection(result, tokens);
+			if (!result)
+				return (NULL);
+		}
+		else
+			break ;
+	}
+	cmd->args[i] = NULL;
+	return (result);
 }
 
 

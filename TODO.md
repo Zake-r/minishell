@@ -40,10 +40,10 @@
 
 
 # EXECUTION
-	- faire le $? (code de sortie)
 	- verif leak
 	- faire norm
 
 
 # AUTRE
 
+syntax erreur de ca alors que bon : echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission   

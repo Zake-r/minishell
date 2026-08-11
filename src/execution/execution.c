@@ -132,105 +132,77 @@ void	exec_pipe(t_ast *ast, char ***env)
 	g_exit_status = status_to_exit_code(status_r);
 }
 
-void	exec_redirout(t_ast *ast, char ***env)
-{
-	int		fd;
-	pid_t	pid;
-	int		status;
 
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("erreur fork");
-		g_exit_status = 1;
-		free_ast(ast);
-		return ;
-	}
-	if (pid == 0)
-	{
-		fd = open(ast->right->args[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd == -1)
-		{
-			perror(ast->right->args[0]);
-			free_ast(ast);
-			exit(1);
-		}
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-		exec_ast(ast->left, env);
-		free_ast(ast);
-		exit(g_exit_status);
-	}
-	waitpid(pid, &status, 0);
-	g_exit_status = status_to_exit_code(status);
+static int apply_one_redir(t_ast *ast)
+{
+    int fd;
+
+    if (ast->type == REDIR_OUT)
+        fd = open(ast->right->args[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    else if (ast->type == APPEND)
+        fd = open(ast->right->args[0], O_WRONLY | O_CREAT | O_APPEND, 0644);
+    else if (ast->type == REDIR_IN)
+        fd = open(ast->right->args[0], O_RDONLY);
+    else
+        return (1); // HEREDOC géré à part si besoin
+    if (fd == -1)
+    {
+        perror(ast->right->args[0]);
+        return (0);
+    }
+    if (ast->type == REDIR_IN)
+        dup2(fd, STDIN_FILENO);
+    else
+        dup2(fd, STDOUT_FILENO);
+    close(fd);
+    return (1);
 }
 
-void	exec_append(t_ast *ast, char ***env)
+// Descend récursivement, applique les redirs en remontant (post-order),
+// et retourne le vrai nœud de commande (WORD ou PIPE) tout en bas
+static t_ast *apply_redirections(t_ast *ast)
 {
-	int		fd;
-	pid_t	pid;
-	char	*filename;
-	int		status;
+    t_ast *cmd;
 
-	filename = ast->right->args[0];
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("erreur fork");
-		g_exit_status = 1;
-		return ;
-	}
-	if (pid == 0)
-	{
-		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (fd == -1)
-		{
-			perror(filename);
-			free_ast(ast);
-			exit(1);
-		}
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-		exec_ast(ast->left, env);
-		free_ast(ast);
-		exit(g_exit_status);
-	}
-	waitpid(pid, &status, 0);
-	g_exit_status = status_to_exit_code(status);
+    if (!ast)
+        return (NULL);
+    if (ast->type != REDIR_OUT && ast->type != REDIR_IN && ast->type != APPEND)
+        return (ast);
+    cmd = apply_redirections(ast->left); // applique les redirs plus anciennes D'ABORD
+    if (!cmd)
+        return (NULL);
+    if (!apply_one_redir(ast)) // applique CETTE redir APRÈS (donc elle gagne)
+        return (NULL);
+    return (cmd);
 }
 
-void	exec_redirin(t_ast *ast, char ***env)
+void exec_redirection(t_ast *ast, char ***env)
 {
-	int		fd;
-	pid_t	pid;
-	char	*filename;
-	int		status;
+    pid_t   pid;
+    int     status;
+    t_ast   *cmd_node;
 
-	filename = ast->right->args[0];
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("erreur fork");
-		g_exit_status = 1;
-		return ;
-	}
-	if (pid == 0)
-	{
-		fd = open(filename, O_RDONLY);
-		if (fd == -1)
-		{
-			perror(filename);
-			free_ast(ast);
-			exit(1);
-		}
-		dup2(fd, STDIN_FILENO);
-		close(fd);
-		exec_ast(ast->left, env);
-		free_ast(ast);
-		exit(g_exit_status);
-	}
-	waitpid(pid, &status, 0);
-	g_exit_status = status_to_exit_code(status);
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("erreur fork");
+        g_exit_status = 1;
+        return ;
+    }
+    if (pid == 0)
+    {
+        cmd_node = apply_redirections(ast);
+        if (!cmd_node)
+        {
+            free_ast(ast);
+            exit(1);
+        }
+        exec_ast(cmd_node, env); // exécute enfin la vraie commande (ls, cat, etc.)
+        free_ast(ast);
+        exit(g_exit_status);
+    }
+    waitpid(pid, &status, 0);
+    g_exit_status = status_to_exit_code(status);
 }
 
 void	exec_heredoc(t_ast *ast, char ***env)
@@ -292,12 +264,8 @@ void	exec_ast(t_ast *ast, char ***env)
 		exec_cmd(ast, env);
 	else if (ast->type == PIPE)
 		exec_pipe(ast, env);
-	else if (ast->type == REDIR_OUT)
-		exec_redirout(ast, env);
-	else if (ast->type == REDIR_IN)
-		exec_redirin(ast, env);
-	else if (ast->type == APPEND)
-		exec_append(ast, env);
+	else if (ast->type == REDIR_OUT || ast->type == REDIR_IN || ast->type == APPEND)
+		exec_redirection(ast, env);
 	else if (ast->type == HEREDOC)
 		exec_heredoc(ast, env);
 }
