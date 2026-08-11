@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:33 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 14:21:47 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 21:37:57 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	builtin_echo(t_ast *ast)
 	}
 	while (ast->args[i])
 	{
-		printf("%s", ast->args[i]);
+		write(1, ast->args[i], ft_strlen(ast->args[i]));
 		if (ast->args[i + 1])
-			printf(" ");
+			write(1, " ", 1);
 		i++;
 	}
 	if (newline)
-		printf("\n");
+		write(1, "\n", 1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:27 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 14:18:41 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 21:04:50 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ char **find_path(char **env)
 	}
 	if (!path)
 		return (NULL);
-	path_splited = ft_split(path, ':');
-	path_splited[0] = path_splited[0] + 5;
+	path_splited = ft_split(path + 5, ':');
 	return path_splited;
 }
 
@@ -104,6 +103,6 @@ char	*verif_command(char *cmd, char **env)
 	if (!path)
 		return (NULL);
 	final_cmd = test_cmd(cmd, path);
-	//free_split(path);
+	free_split(path);
 	return (final_cmd);
 }

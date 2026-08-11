@@ -144,7 +144,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		line = readline("> ");
+		line = readline("minishell$ ");
 		add_history(line);
 		rl_on_new_line();
 		if (!line)

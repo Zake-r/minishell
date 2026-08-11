@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:22 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 14:22:12 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 21:53:38 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 int	is_builtin(char *cmd)
 {
-	char	*builtins[] = {"cd", "exit", "export", "unset", "pwd", "echo",
-			"env", NULL};
-	int		i;
-
-	i = 0;
-	while (builtins[i])
-	{
-		if (strcmp(cmd, builtins[i]) == 0)
-			return (1);
-		i++;
-	}
+	if (ft_strncmp(cmd, "cd", 3) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "exit", 5) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "export", 7) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "unset", 6) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "pwd", 4) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "echo", 5) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "env", 4) == 0)
+		return (1);
 	return (0);
 }
 
@@ -40,6 +43,21 @@ static void	update_pwd(char ***env, char *old_pwd)
 		perror("cd: getcwd");
 }
 
+static char	*get_cd_target(t_ast *ast, char ***env)
+{
+	char	*target;
+
+	if (ast->args[1] == NULL)
+	{
+		target = env_get(*env, "HOME");
+		if (target == NULL)
+			write(2, "cd: HOME not set\n", 18);
+	}
+	else
+		target = ast->args[1];
+	return (target);
+}
+
 int	builtin_cd(t_ast *ast, char ***env)
 {
 	char	*target;
@@ -51,18 +69,12 @@ int	builtin_cd(t_ast *ast, char ***env)
 		return (2);
 	}
 	old_pwd = getcwd(NULL, 0);
-	if (ast->args[1] == NULL)
+	target = get_cd_target(ast, env);
+	if (target == NULL)
 	{
-		target = env_get(*env, "HOME");
-		if (target == NULL)
-		{
-			fprintf(stderr, "cd: HOME not set\n");
-			free(old_pwd);
-			return (2);
-		}
+		free(old_pwd);
+		return (2);
 	}
-	else
-		target = ast->args[1];
 	if (chdir(target) != 0)
 	{
 		perror("cd");
