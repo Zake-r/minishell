@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_simple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbusquet <jbusquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:33 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 22:09:31 by jbusquet         ###   ########.fr       */
+/*   Updated: 2026/08/11 23:01:34 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,17 @@ void	builtin_exit(t_ast *ast)
 	printf("exit\n");
 	if (ast->args[1] && ast->args[2])
 	{
-		fprintf(stderr, "exit: too many arguments\n");
-		g_exit_status = 1;
+		write(2, "exit: too many arguments\n", 25);
+		g_exit_status = 2;
 		return ;
 	}
 	if (ast->args[1])
 	{
 		if (!is_numeric(ast->args[1]))
 		{
-			fprintf(stderr, "exit: %s: numeric argument required\n",
-				ast->args[1]);
+			write(2, "exit: ", 6);
+			write(2, ast->args[1], ft_strlen(ast->args[1]));
+			write(2, ": numeric argument required\n", 28);
 			exit(2);
 		}
 		code = ft_atoi(ast->args[1]);

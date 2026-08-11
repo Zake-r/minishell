@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:30 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 14:21:54 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/11 22:58:24 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	export_one(char ***env, char *arg)
 
 	if (!is_valid_identifier(arg))
 	{
-		fprintf(stderr, "export: `%s': not a valid identifier\n", arg);
+		write(2, "export: `", 9);
+		write(2, arg, ft_strlen(arg));
+		write(2, "': not a valid identifier\n", 26);
 		return (1);
 	}
 	equal = ft_strchr(arg, '=');
@@ -85,8 +87,9 @@ int	builtin_unset(t_ast *ast, char ***env)
 	{
 		if (!is_valid_identifier(ast->args[i]))
 		{
-			fprintf(stderr, "unset: `%s': not a valid identifier\n",
-				ast->args[i]);
+			write(2, "unset: `", 8);
+			write(2, ast->args[i], ft_strlen(ast->args[i]));
+			write(2, "': not a valid identifier\n", 26);
 			status = 1;
 		}
 		else
