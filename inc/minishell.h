@@ -81,30 +81,50 @@ int		count_pipe(char *s);
 int		count_word_to_pipe(char *s);
 
 /* ── builtins ── */
+int		is_builtin(char *cmd);
+int		builtin_cd(t_ast *ast, char ***env);
+int		builtin_pwd(void);
+int		builtin_env(char **env);
+int		builtin_echo(t_ast *ast);
+int		is_valid_identifier(char *str);
+int		export_one(char ***env, char *arg);
+int		builtin_export(t_ast *ast, char ***env);
+int		builtin_unset(t_ast *ast, char ***env);
+void	builtin_exit(t_ast *ast);
+void	exec_builtin(t_ast *ast, char ***env);
 
-int     is_builtin(char *cmd);
-void    exec_builtin(t_ast *ast, char ***env);
+
+/* ── env ── */
+void	free_env(char **env);
+char	**dup_env(char **env);
+char	*env_get(char **env, char *name);
+int		env_find_index(char **env, char *name);
+char	*build_entry(char *name, char *value);
+char	**env_set(char **env, char *name, char *value);
+char	**env_unset(char **env, char *name);
+
 
 /* ── parsing ── */
 
 t_token	*parse_line(char *line, int nb_cmd);
 
 /* ── exécution ── */
+void	exec_cmd(t_ast *ast, char ***env);
+void	exec_pipe(t_ast *ast, char ***env);
+void	exec_redirection(t_ast *ast, char ***env);
+void	exec_heredoc(t_ast *ast, char ***env);
+void	exec_ast(t_ast *ast, char ***env);
 
-void	execute(t_token *tokens, int nb_cmd, char **env);
+/* ── redirections ── */
+int		apply_one_redir(t_ast *ast);
+t_ast	*apply_redirections(t_ast *ast);
+
+/* ── ast/free ── */
 void	free_ast(t_ast *ast);
+void	free_one_ast_node(t_ast *ast);
 
-void exec_redirin(t_ast *ast, char ***env);
-void exec_append(t_ast *ast, char ***env);
-
-
-void free_env(char **env);
-char **dup_env(char **env);
-
-char *env_get(char **env, char *name);
-int env_find_index(char **env, char *name);
-char **env_set(char **env, char *name, char *value);
-char **env_unset(char **env, char *name);
+/* ── status ── */
+int		status_to_exit_code(int status);
 
 
 /* ── libération ── */
@@ -120,5 +140,8 @@ void	free_tokens(t_token *tokens);
 char *verif_command(char *cmd, char **env);
 void handle_ctrlc(int num);
 void handle_ctrlc_heredoc(int num);
+
+
+
 
 #endif
