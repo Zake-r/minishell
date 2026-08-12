@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:18 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 22:20:56 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/12 15:58:06 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ static void	wait_pipe(pid_t pid_l, pid_t pid_r)
 {
 	int	status_r;
 
+	signal(SIGINT, handle_ctrlc_inprocess);
 	waitpid(pid_l, NULL, 0);
 	waitpid(pid_r, &status_r, 0);
+	signal(SIGINT, handle_ctrlc);
 	g_exit_status = status_to_exit_code(status_r);
 }
 
