@@ -44,11 +44,12 @@ t_ast	*new_ast_node(t_type type, int nb_arg)
 t_ast	*create_ast_filename(t_token **tokens)
 {
 	t_ast	*ast;
+	t_token	*tmp;
 
 	ast = new_ast_node(WORD, 1);
 	if (!ast)
 		return (NULL);
-	t_token *tmp = *tokens;
+	tmp = *tokens;
 	ast->args[0] = tmp->value;
 	*tokens = (*tokens)->next;
 	free(tmp);

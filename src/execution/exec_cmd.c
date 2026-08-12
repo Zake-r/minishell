@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbusquet <jbusquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 13:55:11 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/12 15:14:05 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/12 15:41:59 by jbusquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	exec_cmd(t_ast *ast, char ***env)
 	}
 	if (pid == 0)
 		exec_cmd_child(ast, env);
-	signal(SIGINT, handle_ctrlc_inprocess); 
+	signal(SIGINT, handle_ctrlc_inprocess);
 	waitpid(pid, &status, 0);
-	signal(SIGINT, handle_ctrlc);	
+	signal(SIGINT, handle_ctrlc);
 	g_exit_status = status_to_exit_code(status);
 }

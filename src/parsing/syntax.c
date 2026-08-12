@@ -25,10 +25,14 @@ static int	syntax_error_token(char *token)
 	if (!token)
 	{
 		g_exit_status = 2;
-		return (fprintf(stderr, " syntax error near unexpected token `newline'\n"));
+		write(2, "bash: syntax error near unexpected token `newline'\n", 51);
+		return (1);
 	}
 	g_exit_status = 2;
-	return (fprintf(stderr, " syntax error near unexpected token `%s'\n", token));
+	write(2, "bash: syntax error near unexpected token `", 42);
+	write(2, token, ft_strlen(token));
+	write(2, "'\n", 2);
+	return (1);
 }
 
 static int	check_first(t_token *token)

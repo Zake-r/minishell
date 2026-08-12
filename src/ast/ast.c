@@ -16,11 +16,12 @@ t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 {
 	t_ast	*redir;
 	t_ast	*file;
+	t_token	*skip;
 
 	redir = new_ast_node((*tokens)->type, 0);
 	if (!redir)
 		return (NULL);
-	t_token *skip = *tokens;
+	skip = *tokens;
 	*tokens = (*tokens)->next;
 	if (skip->value)
 		free(skip->value);
@@ -61,14 +62,15 @@ static int	count_cmd_words(t_token *tokens)
 
 static t_ast	*parse_cmd(t_ast *cmd, t_ast **result, t_token **tokens)
 {
-	int	i;
+	int		i;
+	t_token	*tmp;
 
 	i = 0;
 	while (*tokens && (*tokens)->type != PIPE)
 	{
 		if ((*tokens)->type == WORD)
 		{
-			t_token *tmp = *tokens;
+			tmp = *tokens;
 			cmd->args[i++] = tmp->value;
 			*tokens = (*tokens)->next;
 			free(tmp);
@@ -103,13 +105,14 @@ t_ast	*create_ast(t_token **tokens)
 	t_ast	*left;
 	t_ast	*right;
 	t_ast	*pipe;
+	t_token	*skip;
 
 	if (!*tokens)
 		return (NULL);
 	left = create_command(tokens);
 	if (*tokens && (*tokens)->type == PIPE)
 	{
-		t_token *skip = *tokens;
+		skip = *tokens;
 		*tokens = (*tokens)->next;
 		if (skip->value)
 			free(skip->value);
