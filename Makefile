@@ -18,13 +18,13 @@ SRCS		=	$(SRCDIR)/main.c \
 				$(SRCDIR)/builtin/builtin_simple.c \
 				$(SRCDIR)/builtin/env_modify.c \
 				$(SRCDIR)/builtin/env_utils.c \
-				$(SRCDIR)/exec_with_norm/exec_ast.c \
-				$(SRCDIR)/exec_with_norm/exec_cmd.c \
-				$(SRCDIR)/exec_with_norm/exec_heredoc.c \
-				$(SRCDIR)/exec_with_norm/exec_pipe.c \
-				$(SRCDIR)/exec_with_norm/exec_redirection.c \
-				$(SRCDIR)/exec_with_norm/redirection_utils.c \
-				$(SRCDIR)/exec_with_norm/search_in_path.c \
+				$(SRCDIR)/execution/exec_ast.c \
+				$(SRCDIR)/execution/exec_cmd.c \
+				$(SRCDIR)/execution/exec_heredoc.c \
+				$(SRCDIR)/execution/exec_pipe.c \
+				$(SRCDIR)/execution/exec_redirection.c \
+				$(SRCDIR)/execution/redirection_utils.c \
+				$(SRCDIR)/execution/search_in_path.c \
 				$(SRCDIR)/parsing/free_utils.c \
 				$(SRCDIR)/parsing/lexer.c \
 				$(SRCDIR)/parsing/lexer_utils.c \

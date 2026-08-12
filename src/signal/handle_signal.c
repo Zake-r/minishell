@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 22:12:04 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 22:38:06 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/12 15:16:22 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ void	handle_ctrlc_heredoc(int num)
 	(void)num;
 	rl_replace_line("", 0);
 	exit(0);
+}
+
+void	handle_ctrlc_inprocess(int num)
+{
+	(void)num;
+	write(1, "\n", 1);
 }

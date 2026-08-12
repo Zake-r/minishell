@@ -156,7 +156,11 @@ void	exec_ast(t_ast *ast, char ***env);
 void	free_all(t_token *tokens, char *line);
 void	free_tokens(t_token *tokens);
 char	*verif_command(char *cmd, char **env);
+
+// signal: 
+
 void	handle_ctrlc(int num);
 void	handle_ctrlc_heredoc(int num);
+void	handle_ctrlc_inprocess(int num);
 
 #endif
