@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 // libft:
-# include "libft/header.h"
+# include "../libft/header.h"
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -25,6 +25,7 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <linux/limits.h>
 # include <errno.h>
 
 extern int	g_exit_status;

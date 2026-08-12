@@ -1,91 +1,66 @@
-# **************************************************************************** #
-#                                   Makefile                                   #
-# **************************************************************************** #
-# =========================
-# Name
-# =========================
-NAME		= minishell
-# =========================
-# Compilation
-# =========================
-CC			= cc
-CFLAGS		= -g -Wall -Wextra -Werror
-IFLAGS		= -I$(INC_DIR) -I. -I$(LIBFT_DIR)
-# =========================
-# OS detection (readline)
-# =========================
-UNAME_S		:= $(shell uname -s)
+NAME		=	minishell
 
-ifeq ($(UNAME_S), Darwin)
-	READLINE_DIR	:= $(shell brew --prefix readline 2>/dev/null)
-	ifeq ($(READLINE_DIR),)
-		$(error "readline introuvable. Installe-le avec : brew install readline")
-	endif
-	IFLAGS		+= -I$(READLINE_DIR)/include
-	READLINE	= -L$(READLINE_DIR)/lib -lreadline
-else
-	READLINE	= -lreadline
-endif
-# =========================
-# Libft
-# =========================
-LIBFT_DIR	= libft
-LIBFT		= $(LIBFT_DIR)/libft.a
-# =========================
-# Directories
-# =========================
-SRC_DIR		= src/
-OBJ_DIR		= obj/
-INC_DIR		= inc/
-# =========================
-# Files
-# =========================
-SRCS		= $(shell find $(SRC_DIR) -name "*.c")
-OBJS		= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
-DEPS		= $(OBJS:.o=.d)
-# =========================
-# Rules
-# =========================
-# Main rule:
-all: $(LIBFT) $(NAME)
-# Libft make rule:
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror
+
+INCDIR		=	./inc
+LIBFTDIR	=	./libft
+SRCDIR		=	./src
+OBJDIR		=	./obj
+
+INCLUDES	=	-I$(INCDIR) -I$(LIBFTDIR) -I$(LIBFTDIR)/inc
+
+SRCS		=	$(SRCDIR)/main.c \
+				$(SRCDIR)/ast/ast.c \
+				$(SRCDIR)/ast/ast_utils.c \
+				$(SRCDIR)/builtin/builtin_cd.c \
+				$(SRCDIR)/builtin/builtin_export.c \
+				$(SRCDIR)/builtin/builtin_simple.c \
+				$(SRCDIR)/builtin/env_modify.c \
+				$(SRCDIR)/builtin/env_utils.c \
+				$(SRCDIR)/exec_with_norm/exec_ast.c \
+				$(SRCDIR)/exec_with_norm/exec_cmd.c \
+				$(SRCDIR)/exec_with_norm/exec_heredoc.c \
+				$(SRCDIR)/exec_with_norm/exec_pipe.c \
+				$(SRCDIR)/exec_with_norm/exec_redirection.c \
+				$(SRCDIR)/exec_with_norm/redirection_utils.c \
+				$(SRCDIR)/exec_with_norm/search_in_path.c \
+				$(SRCDIR)/parsing/free_utils.c \
+				$(SRCDIR)/parsing/lexer.c \
+				$(SRCDIR)/parsing/lexer_utils.c \
+				$(SRCDIR)/parsing/parsing.c \
+				$(SRCDIR)/parsing/parsing_env.c \
+				$(SRCDIR)/parsing/parsing_quotes.c \
+				$(SRCDIR)/parsing/parsing_utils.c \
+				$(SRCDIR)/parsing/syntax.c \
+				$(SRCDIR)/signal/handle_signal.c
+
+OBJS		=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+LIBFT		=	$(LIBFTDIR)/libft.a
+
+LDFLAGS		=	-L$(LIBFTDIR) -lft -lreadline
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCDIR)/minishell.h
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 $(LIBFT):
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-# Name rule:
-$(NAME): $(OBJS) $(LIBFT)
-	@echo "Compilation $(NAME)..."
-	@$(CC) $(CFLAGS) $(OBJS) $(READLINE) $(LIBFT) -o $(NAME)
-	@echo "Compilation complete !"
-# Compilation ".o" files:
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(dir $@)
-	@echo "Compilation $@..."
-	@$(CC) $(CFLAGS) $(IFLAGS) -MMD -MP -c $< -o $@
-# =========================
-# Cleaning
-# =========================
-# Cleaning of objects:
-clean_local:
-	@echo "Deleting object files..."
-	@rm -rf $(OBJ_DIR)
-# Libft cleanup:
-clean: clean_local
-ifeq ($(SKIP_LIBFT_CLEAN),)
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
-endif
-# Thorough cleaning:
-fclean: SKIP_LIBFT_CLEAN=1
-fclean: clean_local
-	@echo "Deleting executables..."
-	@rm -f $(NAME)
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
-# Rebuild:
+	$(MAKE) -C $(LIBFTDIR)
+
+clean:
+	rm -rf $(OBJDIR)
+	$(MAKE) -C $(LIBFTDIR) clean
+
+fclean: clean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFTDIR) fclean
+
 re: fclean all
-# =========================
-# Dependencies
-# =========================
--include $(DEPS)
-# =========================
-# Phony
-# =========================
-.PHONY: all clean clean_local fclean re
+
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: jbossuyt <jbossuyt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 14:19:33 by jbossuyt          #+#    #+#             */
-/*   Updated: 2026/08/11 23:01:34 by jbossuyt         ###   ########.fr       */
+/*   Updated: 2026/08/12 10:39:15 by jbossuyt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	builtin_pwd(void)
 {
-	char	cwd[1024];
+	char	cwd[PATH_MAX];
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
@@ -82,15 +82,15 @@ static int	is_numeric(char *str)
 
 void	builtin_exit(t_ast *ast)
 {
-	long	code;
+	int	code;
 
-	printf("exit\n");
 	if (ast->args[1] && ast->args[2])
 	{
 		write(2, "exit: too many arguments\n", 25);
-		g_exit_status = 1;
+		g_exit_status = 2;
 		return ;
 	}
+	printf("exit\n");
 	if (ast->args[1])
 	{
 		if (!is_numeric(ast->args[1]))
