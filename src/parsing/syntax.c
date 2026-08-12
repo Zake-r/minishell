@@ -25,10 +25,10 @@ static int	syntax_error_token(char *token)
 	if (!token)
 	{
 		g_exit_status = 2;
-		return (printf("syntax error near unexpected token `newline'\n"));
+		return (fprintf(stderr, " syntax error near unexpected token `newline'\n"));
 	}
 	g_exit_status = 2;
-	return (printf("syntax error near unexpected token `%s'\n", token));
+	return (fprintf(stderr, " syntax error near unexpected token `%s'\n", token));
 }
 
 static int	check_first(t_token *token)

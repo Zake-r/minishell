@@ -20,7 +20,11 @@ t_ast	*create_redirection(t_ast *cmd, t_token **tokens)
 	redir = new_ast_node((*tokens)->type, 0);
 	if (!redir)
 		return (NULL);
+	t_token *skip = *tokens;
 	*tokens = (*tokens)->next;
+	if (skip->value)
+		free(skip->value);
+	free(skip);
 	if (!*tokens || (*tokens)->type != WORD)
 		return (NULL);
 	file = create_ast_filename(tokens);
@@ -64,8 +68,10 @@ static t_ast	*parse_cmd(t_ast *cmd, t_ast **result, t_token **tokens)
 	{
 		if ((*tokens)->type == WORD)
 		{
-			cmd->args[i++] = (*tokens)->value;
+			t_token *tmp = *tokens;
+			cmd->args[i++] = tmp->value;
 			*tokens = (*tokens)->next;
+			free(tmp);
 		}
 		else if (is_redirection((*tokens)->type))
 		{
@@ -103,7 +109,11 @@ t_ast	*create_ast(t_token **tokens)
 	left = create_command(tokens);
 	if (*tokens && (*tokens)->type == PIPE)
 	{
+		t_token *skip = *tokens;
 		*tokens = (*tokens)->next;
+		if (skip->value)
+			free(skip->value);
+		free(skip);
 		right = create_ast(tokens);
 		pipe = new_ast_node(PIPE, 0);
 		if (!pipe)

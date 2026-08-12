@@ -41,27 +41,6 @@ t_ast	*new_ast_node(t_type type, int nb_arg)
 	return (ast);
 }
 
-t_ast	*create_ast_word(t_token **tokens)
-{
-	t_ast	*ast;
-	int		nb_arg;
-	int		i;
-
-	nb_arg = word_count(*tokens);
-	ast = new_ast_node(WORD, nb_arg);
-	if (!ast)
-		return (NULL);
-	i = 0;
-	while (*tokens && (*tokens)->type == WORD)
-	{
-		ast->args[i] = (*tokens)->value;
-		*tokens = (*tokens)->next;
-		i++;
-	}
-	ast->args[i] = NULL;
-	return (ast);
-}
-
 t_ast	*create_ast_filename(t_token **tokens)
 {
 	t_ast	*ast;
@@ -69,8 +48,10 @@ t_ast	*create_ast_filename(t_token **tokens)
 	ast = new_ast_node(WORD, 1);
 	if (!ast)
 		return (NULL);
-	ast->args[0] = (*tokens)->value;
-	ast->args[1] = NULL;
+	t_token *tmp = *tokens;
+	ast->args[0] = tmp->value;
 	*tokens = (*tokens)->next;
+	free(tmp);
+	ast->args[1] = NULL;
 	return (ast);
 }

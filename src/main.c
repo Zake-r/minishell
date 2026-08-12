@@ -14,7 +14,7 @@
 
 int	g_exit_status = 0;
 
-static void	shell_loop(char **parsed_env)
+static void	shell_loop(char ***parsed_env)
 {
 	t_token	*tokens;
 	t_ast	*ast;
@@ -23,21 +23,22 @@ static void	shell_loop(char **parsed_env)
 	while (1)
 	{
 		line = readline("minishell$ ");
-		add_history(line);
-		rl_on_new_line();
 		if (!line)
 		{
 			printf("exit\n");
 			break ;
 		}
+		add_history(line);
+		rl_on_new_line();
 		if (*line == '\0')
 			continue ;
-		tokens = parsing(line, parsed_env);
+		tokens = parsing(line, *parsed_env);
 		if (!tokens)
 			continue ;
 		ast = create_ast(&tokens);
-		exec_ast(ast, &parsed_env);
+		exec_ast(ast, parsed_env);
 		free_ast(ast);
+		free_tokens(tokens);
 	}
 }
 
@@ -51,7 +52,7 @@ int	main(int argc, char **argv, char **env)
 		return (printf("The number of arguments is incorrect\n"), 1);
 	signal(SIGINT, handle_ctrlc);
 	signal(SIGQUIT, SIG_IGN);
-	shell_loop(parsed_env);
+	shell_loop(&parsed_env);
 	free_env(parsed_env);
 	return (g_exit_status);
 }

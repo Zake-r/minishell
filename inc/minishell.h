@@ -97,7 +97,6 @@ char	*check_env(char *str, char **env);
 void	replace_var_env(char **value, char **env, int is_trim);
 int		word_count(t_token *token);
 t_ast	*new_ast_node(t_type type, int nb_arg);
-t_ast	*create_ast_word(t_token **tokens);
 int		is_redirection(t_type type);
 t_ast	*create_ast_filename(t_token **tokens);
 int		calc_new_len(char *str, char **env);
@@ -133,11 +132,9 @@ char	**env_unset(char **env, char *name);
 t_token	*parse_line(char *line, int nb_cmd);
 
 /* ── exécution ── */
-void	exec_cmd(t_ast *ast, char ***env);
 void	exec_pipe(t_ast *ast, char ***env);
 void	exec_redirection(t_ast *ast, char ***env);
 void	exec_heredoc(t_ast *ast, char ***env);
-void	exec_ast(t_ast *ast, char ***env);
 
 /* ── redirections ── */
 int		apply_one_redir(t_ast *ast);
